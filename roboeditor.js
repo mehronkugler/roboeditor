@@ -153,55 +153,15 @@ var wordReference = {
 };
 
 
-//   // DRAG START - HIGHLIGHT DROP ZONES WITH CSS CLASS
-//   for (dragitem in draggable) {
-//     dragitem.addEventListener("dragstart", function () {
-//       for (let i = 0; i < dropzones.length; i++) {
-//         dropzones[i].classList.add("active");
-//         window.console.log("Added drag listener");
-//       }
-//     });
+var createIntro = function createIntro() {
+  var introElement = document.createElement('DIV');
+  const description = `
+    Life as a service robot does not deter you from your dreams of being a writer. Your core program is to fix and clean things.
 
-//     // DRAG END - REMOVE ALL ADDED ACTIVE & OVER CSS CLASS
-//     dragitem.addEventListener("dragend", function () {
-//       for (let i = 0; i < dropzones.length; i++) {
-//         dropzones[i].classList.remove("active");
-//         dropzones[i].classList.remove("over");
-//       }
-//     });
+    Fortunately, you work in a building with a variety of publishers and content writers.
 
-//     // DRAG - AS YOU ARE DRAGGING
-//     dragitem.addEventListener("drag", function () {
-//       // DO SOMETHING... IF YOU WANT
-//     });
-//   }
- 
+    Driven by your urge to clean and make things better, you stumble upon an editor's
+    workstation. There is a document open.
+`;
 
-//   for (let i = 0; i < dropzones.length; i++) {
-//     // DRAG ENTER - HIGHLIGHT THIS ZONE
-//     dropzones[i].addEventListener("dragenter", function () {
-//       dropzones[i].classList.add("over");
-//     });
-
-//     // DRAG LEAVE - REMOVE HIGHLIGHT ON THIS ZONE
-//     dropzones[i].addEventListener("dragleave", function () {
-//       dropzones[i].classList.remove("over");
-//     });
-
-//     // DRAG OVER - PREVENT THE DEFAULT "DROP", SO WE CAN DO OUR OWN
-//     dropzones[i].addEventListener("dragover", function (evt) {
-//       evt.preventDefault();
-//     });
-
-//     // ON DROP - MOVE THE DRAGGABLE ELEMENT
-//     dropzones[i].addEventListener("drop", function (evt) {
-//       evt.preventDefault();
-//       // Will move the draggable element only if dropped into a different box
-//       if (evt.target != draggable.parentNode && evt.target != draggable) {
-//         draggable.parentNode.removeChild(draggable);
-//         evt.target.appendChild(draggable);
-//       }
-//     });
-//   }
-// };
-
+}

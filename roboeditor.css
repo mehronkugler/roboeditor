@@ -1,4 +1,52 @@
 /* [THE "DEFAULT" STYLES] */
+* {
+  font-family: sans-serif;
+}
+#storydrop > p {
+  line-height: 50px;
+  padding: 10px;
+  max-height: 500px;
+  overflow-y: scroll;
+}
+#storydrop {
+  padding: 30px;
+  border: 5px solid gray;
+  font-family: serif;
+}
+
+#mainarea {
+  width: 768px;
+  border: 3px solid gray;
+}
+
+#gamearea {
+  width: 800px;
+  margin: 0 auto;
+}
+
+#wordpick {
+  margin-top: 12px;
+}
+
+.fakeeditor {
+  width: 100%;
+  text-align: center;
+  border: 3px solid gray;
+  border-radius: 3px;
+  background-color: #E5F3F6;
+  font-family: sans-serif;
+}
+.fakeeditor > span {
+  display: inline;
+  float: right;
+}
+.fakeeditor > .icon {
+  float: left;
+}
+.fakeeditor > .title {
+  float: none;
+}
+
 .draggable {
   background: #e0ffee;
   border: 1px solid #57a57a;
