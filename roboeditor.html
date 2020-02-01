@@ -6,25 +6,26 @@
 	<link rel="stylesheet" type="text/css" href="roboeditor.css" media="screen"/>
   	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-      <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+     <link rel="stylesheet" href="foundation.min.css">
     <script src="roboeditor.js" type="text/javascript"></script>
 </head>
 <body>
 	<div id="mainarea">
 		<div id="storydrop">
 			<h2>Article title</h2>
-			<p>It was a <span class="dropzone adjective">dark</span> and <span class="dropzone adjective">stormy</span> night. The <span class="dropzone nounplural">windows</span> rattled <span class="dropzone adjective">loudly.</span> I feared for my very <span class="dropzone noun">life</span>. The storm was <span class="dropzone hyperbole">incredibly</span> <span class="dropzone adjective">noisy</span>
+			<p>It was a <span class="dropzone adjective" score=1>dark</span> and <span class="dropzone adjective" score=2>stormy</span> night. The <span class="dropzone nounplural" score=2>windows</span> rattled <span class="dropzone adverb" score=2>loudly.</span> I feared for my very <span class="dropzone noun" score="1">life</span>. The storm was <span class="dropzone adverb" score="4">incredibly</span> <span class="dropzone adjective" score="2">noisy</span>.
 			</p>
 		</div>
 		<div id="wordpick">
 			<div id="worddrop" class="dropzone">
-				<div class="draggable adjective">scintillating</div>
+				<!-- <div class="draggable adjective">scintillating</div>
 				<div class="draggable adjective">refreshing</div>
-				<div class="draggable nounplural">butterflies</div>
+				<div class="draggable nounplural">butterflies</div> -->
 			</div>
 		</div>
 		<div class="actionbar">
-			<button id="calculatefix">FIX ALL THE THINGS!</button>
+			<button id="calculatefix">DONE FIXING!</button>
 			<div class="calculatescore"></div>
 		</div>
 	</div>
