@@ -15,7 +15,12 @@ window.onload = function () {
       $('#wordpick').droppable();
 
       $( ".dropzone.noun" ).droppable({
-        accept: ".noun"
+        accept: ".noun",
+        // stop: function( event, ui ) {
+        //   window.console.log(event);
+        //   window.console.log(ui);
+        //   ui.helper.draggable("disable");
+        // }
       });
 
       $( ".dropzone.nounplural" ).droppable({
@@ -36,10 +41,16 @@ window.onload = function () {
               .addClass( "ui-state-default" );
               // .find( "p" )
                 // .html( "Dropped!" );
+
+            ui.draggable.draggable("disable");
             window.console.log("Dropped a word");
           }
         }
       );
+
+      $('#calculatefix').click(function (event) {
+        $('.calculatescore').text("haha sooo funny");
+      });
      
 }
 //   // DRAG START - HIGHLIGHT DROP ZONES WITH CSS CLASS
