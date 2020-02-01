@@ -48,6 +48,11 @@ window.onload = function () {
 
       $('#calculatefix').click(function (event) {
         $('.calculatescore').text("haha sooo funny");
+        var newScore = calculateScore();
+        $('.calculatescore').text(
+          "Through fine use of wordsmithery and keyboard mashing, " +
+          "your efforts have earned you " + String( newScore ) + " points."
+         );
       });
      
 }
@@ -63,10 +68,14 @@ var basicDropCallback = function basicDropCallback( event, ui, dropObject ) {
 var fillInDropWithTarget = function fillInDropWithTarget( dragged, dropzone ){
   dropzone.text("");
   dropzone.append(dragged);
-  dragged["0"].classList.remove(["ui-draggable", "ui-draggable-handle", "ui-draggable-disabled"]);
-  dragged["0"].style = "display: inline;";
+  dragged.removeClass(
+      "ui-draggable ui-draggable-handle ui-draggable-disabled ui-draggable-dragging"
+  );
+  dragged.addClass("dropped");
+  dragged.attr("style", "");
+  
   var oldScore = dropzone.attr("score");
-  dragged.setAttribute("oldscore", oldScore);
+  dragged.attr("oldscore", oldScore);
 };
 
 var addDraggableWords = function addDraggableWords( dropzoneElement ) {
@@ -108,7 +117,15 @@ var createDraggableWord = function createDraggableWord( wordType ) {
 //         <div class="draggable nounplural">butterflies</div>
 
 var calculateScore = function calculateScore() {
+  var usedWords = document.querySelectorAll('.draggable.dropped');
+  var scoreOfExistingWords = 0;
+  var scoreOfUsedWords = 0;
+  usedWords.forEach( function (wordElement) {
+    scoreOfExistingWords += parseInt(wordElement.getAttribute("oldscore"));
+    scoreOfUsedWords += parseInt(wordElement.getAttribute("score"));
+  });
 
+  return (scoreOfUsedWords - scoreOfExistingWords);
 }
 
 var wordReference = {
