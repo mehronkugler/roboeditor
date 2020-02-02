@@ -23,10 +23,26 @@ var generateProse = function generateProse( proseName ) {
 
   listOfRequirements.forEach( function (requirementName) {
     var countWordTypeNeeded = storiesData[proseName].requirements[requirementName];
-      wordsForMeetingReqs[requirementName] = (
+      wordsForMeetingReqs[requirementName] = 
         createManyStoryWords(requirementName, countWordTypeNeeded);
-      );
   });
+
+  while (wordsForMeetingReqs.adjective.length) {
+    var nextAdj = wordsForMeetingReqs.adjective.pop();
+    text.replace('<adjective>', nextAdj);
+  }
+  while (wordsForMeetingReqs.noun.length) {
+    var nextAdj = wordsForMeetingReqs.noun.pop();
+    text.replace('<noun>', nextAdj);
+  }
+  while (wordsForMeetingReqs.pluralnoun.length) {
+    var nextAdj = wordsForMeetingReqs.pluralnoun.pop();
+    text.replace('<pluralnoun>', nextAdj);
+  }
+  while (wordsForMeetingReqs.adverb.length) {
+    var nextAdj = wordsForMeetingReqs.adverb.pop();
+    text.replace('<adverb>', nextAdj);
+  }
 }
 
 /**
@@ -70,7 +86,11 @@ var storyWordReference = {
     "thunder": 2
   },
   pluralnoun: {
-    "window": 2
+    "windows": 2
+  },
+  adverb: {
+    "incredibly": 4,
+    "loudly": 2
   }
 };
 
