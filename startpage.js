@@ -6,5 +6,9 @@ window.onload = function () {
   		loopCount: Infinity,
   		shuffle: true
 	});
+
+	// var audioElement = new Audio('');
+	// audioElement.play();
+	
 }
 

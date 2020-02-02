@@ -5,7 +5,7 @@
   src: url(fonts/PlayfairDisplay-Regular.ttf);
 }
 
-* {
+*, h1, h2, h3, h4, h5 {
   font-family: 'PlayfairDisplay';
   z-index: 1;
 }
@@ -48,6 +48,11 @@
   background: white;
   margin-bottom: 20px;
   padding: 20px;
+}
+
+#gamearea > img {
+  width: 250px;
+  margin-top: -9px;
 }
 
 #wordpick {
@@ -160,6 +165,9 @@ cursor: pointer;}
   /*transition: all 0.7s;*/
 }
 
+#scorecontent {
+  line-height: 2rem;
+}
 
 
 .scorecard {
@@ -182,11 +190,12 @@ cursor: pointer;}
   /*font-size: 32px;*/
   /*margin-top: 30px;*/
   font-size: 32px;
-  margin-top: 30px;
+  margin-top: 110px;
   position: absolute;
-  left: 179px;
-  top: 100px;
+  left: 42%;
+  top: 121px;
   background: none;
+  -moz-transform: rotate(-20deg);
 }
 
 #playerprofile {
@@ -219,4 +228,37 @@ margin: 0 auto;
 background: white;
 padding: 25px;
 left: 159px;
+}
+
+.profile img {
+  width: 150px;
+  float: left;
+
+}
+
+#charselect {
+  position: absolute;
+
+top: 0px;
+
+left: 0px;
+
+background: white;
+
+
+height: 143%;
+
+padding:: 20px;
+}
+
+#charselect .profile {
+  display: inline-block;
+  vertical-align: top;
+  height: 300px;
+  width: 600px;
+}
+
+#charselect > h1,
+#charselect > h4 {
+  text-align: center;
 }

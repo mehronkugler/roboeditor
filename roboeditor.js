@@ -7,7 +7,32 @@ window.onload = function () {
       storyDrop = document.getElementById('storydrop'),
       storyTitleElement = document.querySelector('.fakeeditor > span.title'),
       listOfStories = ['taleOfTooBorings', 'travelBlog1', 'darkAndStormy'],
-      playerPoints = 0;
+      playerPoints = 0,
+      selectedBot = 1;
+
+  var playerProfileImages = {
+    1: "img/profile1_lg.png",
+    2: "img/profile2_lg.png",
+    3: "img/profile3_lg.png",
+    4: "img/profile4_lg.png"
+  }
+
+  var profileImage = playerProfileImages[String(selectedBot)];
+
+  var botNames = {
+    1: "Repair Bot",
+    2: "Profound Bot",
+    3: "Security Bot",
+    4: "Lampshade"
+  }
+
+  var updateProfileImage = function updateProfileImage( botNumber ) {
+    $('#playerprofileimage').attr("src", playerProfileImages[String(botNumber)]);
+  }
+  var updatePlayerName = function updatePlayerName( botNumber ) {
+    $('#playerbotname').text( botNames[String(botNumber)]);
+  }
+
 
   /**
    * Generate story, add droppables, put on screen
@@ -248,6 +273,13 @@ window.onload = function () {
     $('.scorecard').hide();
     cleanUpGameField();
     startBoard( listOfStories );
+  });
+
+  $('.button.charpick').click( function (event) {
+    var pickedBot = $(this).attr("charchoice");
+    updateProfileImage( pickedBot );
+    updatePlayerName( pickedBot );
+    $('#charselect').hide();
   });
 
 
