@@ -1,7 +1,15 @@
 /* [THE "DEFAULT" STYLES] */
-* {
-  font-family: sans-serif;
+
+@font-face {
+  font-family: PlayfairDisplay;
+  src: url(fonts/PlayfairDisplay-Regular.ttf);
 }
+
+* {
+  font-family: 'PlayfairDisplay';
+  z-index: 1;
+}
+
 #storydrop > p {
   line-height: 50px;
   padding: 10px;
@@ -20,8 +28,17 @@
 }
 
 #gamearea {
-  width: 800px;
+  width: 500px;
   margin: 0 auto;
+  margin-top: 0px;
+  text-align: center;
+  line-height: 50px;
+  border: 1px solid gray;
+  border-radius: 50px;
+  box-shadow: 2px 2px 25px gray;
+  height: 500px;
+  margin-top: 49px;
+  position: relative;
 }
 
 #wordpick {
@@ -100,3 +117,30 @@ font-size: 0.9rem;
 line-height: 1;
 text-align: center;
 cursor: pointer;}
+
+.scorecard {
+  width: 350px;
+  height: 450px;
+  top: 5%;
+  background: white;
+  box-shadow: 5px 5px 5px gray;
+  margin: 0 auto;
+  border: 3px solid gray;
+  border-radius: 5px;
+  z-index:1000;
+  left: 35%;
+  position: absolute;
+  display: none;
+  padding: 15px;
+}
+
+#startgame {
+  /*font-size: 32px;*/
+  /*margin-top: 30px;*/
+  font-size: 32px;
+  margin-top: 30px;
+  position: absolute;
+  left: 179px;
+  top: 100px;
+  background: none;
+}

@@ -47,12 +47,18 @@ window.onload = function () {
       );
 
       $('#calculatefix').click(function (event) {
-        $('.calculatescore').text("haha sooo funny");
+        // $('.calculatescore').text("haha sooo funny");
+        window.console.log("im still relevant)");
         var newScore = calculateScore();
-        $('.calculatescore').text(
+        $('.scorecard').show();
+        $('.scorecontent').text(
           "Through fine use of wordsmithery and keyboard mashing, " +
           "your efforts have earned you " + String( newScore ) + " points."
          );
+      });
+
+      $('#closescorecard').click(function (event) {
+        $('.scorecard').hide();
       });
      
 }
@@ -166,3 +172,15 @@ var createIntro = function createIntro() {
 
 }
 
+document.onkeydown = function(evt) {
+    evt = evt || window.event;
+    var isEscape = false;
+    if ("key" in evt) {
+        isEscape = (evt.key === "Escape" || evt.key === "Esc");
+    } else {
+        isEscape = (evt.keyCode === 27);
+    }
+    if (isEscape) {
+        $('.scorecard').hide();
+    }
+};
