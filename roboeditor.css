@@ -272,3 +272,10 @@ padding:: 20px;
     margin-left: 40%;
     margin-top: 100px;
 }
+
+#indexaudo {
+position: fixed;
+bottom: 0px;
+opacity: 0.3;
+left: 39%;
+}

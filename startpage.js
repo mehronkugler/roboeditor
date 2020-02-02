@@ -1,6 +1,9 @@
 window.onload = function () {
 	var typed = new Typed('.viewpoint', {
-	  strings: ["Fix", "Mangle", "Improve", "Destroy", "Rebuild", "Exonerate", "Weld"],
+	  strings: [
+	  	"Fix", "Mangle", "Improve", "Reticulate", "Rebuild", "Exonerate", "Weld",
+	  	"Interlocute", "Bloviate", "Vamp", "Botsplain", "" 
+	  ],
 	  typeSpeed: 150,
 	  loop: true,
   		loopCount: Infinity,
@@ -9,6 +12,6 @@ window.onload = function () {
 
 	// var audioElement = new Audio('');
 	// audioElement.play();
-	
+
 }
 

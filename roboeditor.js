@@ -279,6 +279,7 @@ window.onload = function () {
     var pickedBot = $(this).attr("charchoice");
     updateProfileImage( pickedBot );
     updatePlayerName( pickedBot );
+    $('#dropnamelabel').text(botNames[String(pickedBot)]);
     $('#charselect').hide();
   });
 
