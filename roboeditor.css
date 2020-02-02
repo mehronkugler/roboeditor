@@ -26,7 +26,7 @@
 }
 
 #mainarea {
-  width: 1024px;
+  /*width: 1024px;*/
   border: 3px solid gray;
   margin: 0 auto;
 }
@@ -81,14 +81,17 @@ display: block;
 .draggable {
   background: #e0ffee;
   border: 1px solid #57a57a;
-  width: 150px;
+  /*width: 150px;*/
   padding: 10px;
   text-align: center;
-  display: inline;
+  display: inline-block;
+  padding-top: 0px;
+  padding-bottom: 0px;
 }
 
 .dropped {
   display: inline;
+    padding: 10px;
 }
 
 .dropzone {
