@@ -164,26 +164,27 @@ var storiesData = {
     title: "Travel Blog Entry: SomewhereIsStan",
     author: "Chad The Rad Travelin' Dad",
     text: "" +
-"Picture this: mountains for miles, the aroma of <span class=\"dropzone noun\" score=\"3\">wildflowers</span> on the air, "+
+"Picture this: <span class=\"dropzone adjective\" score=\"3\">amazing</span> mountains for miles, "+
+"<span class=\"dropzone adjective\" score=\"2\">fragrant</span> <span class=\"dropzone nounplural\" score=\"3\">wildflowers</span> on the air, "+
 "a <span class=\"dropzone adjective\" score=\"1\">warm</span> breeze, and <adjective> cottages ranging as far as the eye can see."+
-
-"I decided to go to SomewhereIsStan after a <adjective> friend recommended it to me. "+
-"At first I was <adverb> hesitatant, but then I decided I needed to search my <nounplural> and "+
-"check my doubts. One <adjective> Friday night, I got home, lit some <noun>, and checked "+
-"in with the universe."+
-
-"BOOM. "+
-
-"It shouted a <adjective> \"YES\" and four days later I was glamping through the slushy "+
-"highlands of SomewhereIsStand, constantly streaming everything around me and taking "+
-"photos of everything possible so that I didn't have to actually be present. Give "+
-"this article a thumbs-up if you liked reading.",
+"<br><br>"+
+"I <span class=\"dropzone adverb\" score=\"3\">hesitantly</span>decided to go to SomewhereIsStan after a <adjective> friend "+
+"came up and <span class=\"dropzone verb\" score=\"3\">slapped</span> me in the face. "+
+"At first I was <adverb> hesitant, but I decided I <adverb> needed to search my "+
+"<span class=\"dropzone nouplural\" score=\"2\">feelings</span> and "+
+"check my <span class=\"dropzone nouplural\" score=\"1\">doubts</span>."+
+"<br><br>"+
+"After checking in with the <span class=\"dropzone nouplural\" score=\"3\">universe</span> "+
+"I was <span class=\"dropzone verb\" score=\"2\">glamping</span> through the "+
+"<span class=\"dropzone adjective\" score=\"2\">slushy</span> "+
+"highlands of SomewhereIsStan, free as a <span class=\"dropzone noun\" score=\"1\">wage</span> "+
+"<span class=\"dropzone noun\" score=\"1\">slave</span>.",
     requirements: {
-      adjective: 4,
-      nounplural: 0,
+      adjective: 6,
+      nounplural: 3,
       noun: 0,
-      adverb: 0,
-      verb: 0
+      adverb: 2,
+      verb: 1
     }
   }
 }
