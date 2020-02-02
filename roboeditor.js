@@ -5,8 +5,9 @@ window.onload = function () {
       dropzones = document.querySelectorAll(".dropzone"),
       worddrop   = document.getElementById("worddrop"),
       storyDrop = document.getElementById('storydrop'),
-      storyTitleElement = document.querySelector('.fakeeditor > span.title');
-      // currentStoryRef = 'darkAndStormy';
+      storyTitleElement = document.querySelector('.fakeeditor > span.title'),
+      listOfStories = ['taleOfTooBorings', 'travelBlog1', 'darkAndStormy'],
+      playerPoints = 0;
 
   /**
    * Generate story, add droppables, put on screen
@@ -45,12 +46,13 @@ window.onload = function () {
         $('#calculatefix').click(function (event) {
           // $('.calculatescore').text("haha sooo funny");
           window.console.log("im still relevant)");
-          var newScore = calculateScore();
+          var scoreThisRound = calculateScore();
           $('.scorecard').show();
           $('.scorecontent').text(
             "Through fine use of wordsmithery and keyboard mashing, " +
-            "your efforts have earned you " + String( newScore ) + " points."
+            "your efforts have earned you " + String( scoreThisRound ) + " points."
            );
+          updateScore( scoreThisRound );
         });
 
         $('#closescorecard').click(function (event) {
@@ -201,17 +203,66 @@ window.onload = function () {
       }
   };
 
+  var getFinalRatingWord = function getFinalRatingWord( score ) {
+    var finalWord = "Misunderstood";
+    if (score > 10) {
+      finalWord = "Acknowledged";
+    } else if (score > 25) {
+      finalWord = "Admired";
+    } else if (score > 100) {
+      finalWord = "Gaming the system"
+    }
+    return finalWord;
+  }
+
+  var showEndGameAchievementText = function( score ) {
+    if (score < 11) {
+      $('.lowscore').show();
+    } else if (score > 10) {
+      $('.mediumscore').show();
+    } else if (score > 25) {
+      $('.highscore').show();
+    } else if (score > 100) {
+      $('.highscore').show();
+    }
+  }
+
+  var showFinalScreen = function showFinalScreen() {
+    var ratingWord = getFinalRatingWord( playerPoints );
+    showEndGameAchievementText( playerPoints );
+    $('#admiredword').text(ratingWord);
+    $('#thankyou').show();
+  }
+
+  var updateScore = function updateScore( scoreToAdd ) {
+    playerPoints = playerPoints + scoreToAdd;
+    $('#currentscore').text(String(playerPoints));
+  }
+
   var cleanUpGameField = function cleanUpGameField() {
     storyDrop.innerHTML = "";
     worddrop.innerHTML = "";
   }
 
+  $('#nextstory').click( function() {
+    $('.scorecard').hide();
+    cleanUpGameField();
+    startBoard( listOfStories );
+  });
 
-  var startBoard = function startBoard( currentStoryRef ) {
-    addDraggableWords( worddrop );
-    generateStoryPageElements( currentStoryRef );
+
+  var startBoard = function startBoard( activeStoriesList ) {
+    var currentStoryRef = activeStoriesList.pop();
+    if (currentStoryRef) {
+      addDraggableWords( worddrop );
+      generateStoryPageElements( currentStoryRef );
+      // updateScore( 0 );
+    } else {
+    // alert("OUT OF STORIES BREH");
+    showFinalScreen();
+    }
   }
 
-  startBoard('darkAndStormy');
+  startBoard( listOfStories );
 
 }

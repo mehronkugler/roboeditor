@@ -23,17 +23,19 @@
   height: 350px;
   text-align: left;
   line-height: 2rem;
+  overflow-y: scroll;
 }
 
 #mainarea {
   /*width: 1024px;*/
-  border: 3px solid gray;
+  /*border: 3px solid gray;*/
   margin: 0 auto;
 }
 
 #gamearea {
   width: 960px;
-  margin: 0 auto;
+  /*margin: 0 auto;*/
+  margin-left: 160px;
   margin-top: 0px;
   text-align: center;
   line-height: 50px;
@@ -41,7 +43,7 @@
   /*border-radius: 50px;*/
   box-shadow: 2px 2px 25px gray;
   /*height: 500px;*/
-  margin-top: 49px;
+  margin-top: 20px;
   position: relative;
   background: white;
   margin-bottom: 20px;
@@ -54,7 +56,46 @@
 
 #worddrop {
   width: 100%;
-display: block;
+  display: block;
+}
+
+button {
+display: inline-block;
+
+vertical-align: middle;
+
+margin: 0 0 1rem 0;
+padding: 0.85em 1em;
+border: 1px solid transparent;
+border-radius: 0;
+-webkit-transition: background-color 0.25s ease-out, color 0.25s ease-out;
+transition: background-color 0.25s ease-out, color 0.25s ease-out;
+font-family: inherit;
+font-size: 1.5rem;
+-webkit-appearance: none;
+line-height: 1;
+text-align: center;
+cursor: pointer;}
+
+#calculatefix {
+  position: fixed;
+  left: 0px;
+  top: 400px;
+  width: 150px;
+  font-size: 20px;
+  line-height: 1.4;
+  font-weight: bold;
+}
+
+#helptext {
+  position: fixed;
+  left: 0px;
+  top: 200px;
+  width: 150px;
+} 
+
+.button {
+  font-size: 1.2rem;
 }
 
 .fakeeditor {
@@ -119,23 +160,7 @@ display: block;
   /*transition: all 0.7s;*/
 }
 
-button {
-display: inline-block;
 
-vertical-align: middle;
-
-margin: 0 0 1rem 0;
-padding: 0.85em 1em;
-border: 1px solid transparent;
-border-radius: 0;
--webkit-transition: background-color 0.25s ease-out, color 0.25s ease-out;
-transition: background-color 0.25s ease-out, color 0.25s ease-out;
-font-family: inherit;
-font-size: 1.5rem;
--webkit-appearance: none;
-line-height: 1;
-text-align: center;
-cursor: pointer;}
 
 .scorecard {
   width: 350px;
@@ -162,4 +187,36 @@ cursor: pointer;}
   left: 179px;
   top: 100px;
   background: none;
+}
+
+#playerprofile {
+  width: 150px;
+  position: fixed;
+  top: 20px;
+  clear: both;
+  border: 1px solid blue;
+  background: white;
+  left: 0px;
+}
+
+#playerprofile img {
+  width: 75px;
+}
+
+.lowscore, .mediumscore, .highscore, #thankyou {
+  display: none;
+}
+
+#thankyou {
+  position: fixed;
+
+width: 960px;
+height: 500px;
+overflow-y: scroll;
+z-index: 5000;
+top: 20px;
+margin: 0 auto;
+background: white;
+padding: 25px;
+left: 159px;
 }
