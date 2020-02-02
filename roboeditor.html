@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
-	<meta charset="UTF-8">
-	<title>Robo Editor - terrible alpha version</title>
-	<script src = "faker.js" type = "text/javascript"></script>
-	<link rel="stylesheet" type="text/css" href="roboeditor.css" media="screen"/>
-  	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <meta charset="UTF-8">
+    <title>Robo Editor - terrible alpha version</title>
+    <script src="generatestorycontent.js" type="text/javascript"></script>
+    <script src = "faker.js" type = "text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="roboeditor.css" media="screen"/>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
      <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
      <link rel="stylesheet" href="css/foundation.min.css">
@@ -13,46 +14,42 @@
     <script src="roboeditor.js" type="text/javascript"></script>
 </head>
 <body>
-	<div class="grid-container">
-		<div class="grid-x" id="gamearea">
-	  		<div class="cell large-3">
-				<div id="mainarea">
-					<div class="fakeeditor">
-						<span class="icon">📝</span>
-						<span class="title">A Wonderful Story</span>
-						<span>✖️</span>
-						<span>🗖</span>
-						<span>🗕</span>
-					</div>
-					<div id="storydrop">
-						<h2>Article title</h2>
-						<p>It was a <span class="dropzone adjective" score=1>dark</span> and <span class="dropzone adjective" score=2>stormy</span> night. The <span class="dropzone nounplural" score=2>windows</span> rattled <span class="dropzone adverb" score=2>loudly.</span> I feared for my very <span class="dropzone noun" score="1">life</span>. The storm was <span class="dropzone adverb" score="4">incredibly</span> <span class="dropzone adjective" score="2">noisy</span>.
-						</p>
-					</div>
-					<div id="wordpick">
-						<h4>These words from your memory bank appear:</h4>
-						<div id="worddrop" class="dropzone">
-							<!-- <div class="draggable adjective">scintillating</div>
-							<div class="draggable adjective">refreshing</div>
-							<div class="draggable nounplural">butterflies</div> -->
-						</div>
-						<p>Drag and drop into the article: fix this horrible writing!</p>
-						<p>Your score is determined by your choice of words.</p>
-					</div>
-					<div class="actionbar">
-						<button type="button" id="calculatefix" class="button btn-primary">I'M DONE FIXIN'!</button>
-						<div class="calculatescore"></div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 
-	<div class="scorecard">
-		<h1>The results are in.</h1>
-		<p class="scorecontent"></p>
-		<button class="button btn-primary" id="closescorecard">Keep on fixin'</button>
-		<button class="button btn-secondary">Mangle another story</button>
-	</div>
-</body>	
+    <div class="grid-x" id="gamearea">
+        <div id="mainarea">
+            <div class="fakeeditor">
+                <span class="icon">📝</span>
+                <span class="title">A Wonderful Story</span>
+                <span>✖️</span>
+                <span>🗖</span>
+                <span>🗕</span>
+            </div>
+            <div>
+                <p id="storydrop">It was a <span class="dropzone adjective" score=1>dark</span> and <span class="dropzone adjective" score=2>stormy</span> night. The <span class="dropzone nounplural" score=2>windows</span> rattled <span class="dropzone adverb" score=2>loudly.</span> I feared for my very <span class="dropzone noun" score="1">life</span>. The storm was <span class="dropzone adverb" score="4">incredibly</span> <span class="dropzone adjective" score="2">noisy</span>.
+                </p>
+            </div>
+            <div id="wordpick">
+                <h4>These words from your memory bank appear:</h4>
+                <div id="worddrop" class="dropzone">
+                    <!-- <div class="draggable adjective">scintillating</div>
+                    <div class="draggable adjective">refreshing</div>
+                    <div class="draggable nounplural">butterflies</div> -->
+                </div>
+                <p>Drag and drop into the article: fix this horrible writing!</p>
+                <p>Your score is determined by your choice of words.</p>
+            </div>
+            <div class="actionbar">
+                <button type="button" id="calculatefix" class="button btn-primary">I'M DONE FIXIN'!</button>
+                <div class="calculatescore"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="scorecard">
+        <h1>The results are in.</h1>
+        <p class="scorecontent"></p>
+        <button class="button btn-primary" id="closescorecard">Keep on fixin'</button>
+        <button class="button btn-secondary">Mangle another story</button>
+    </div>
+</body> 
 </html>

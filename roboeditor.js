@@ -3,9 +3,19 @@ window.onload = function () {
 //   // GET ALL THE PLAYERS - DRAGGABLE AND DROP ZONES
   var draggable = document.querySelectorAll(".draggable"),
       dropzones = document.querySelectorAll(".dropzone"),
-      worddrop   = document.getElementById("worddrop");
+      worddrop   = document.getElementById("worddrop"),
+      storyDrop = document.getElementById('storydrop'),
+      storyTitleElement = document.querySelector('.fakeeditor > span.title'),
+      currentStoryRef = 'darkAndStormy';
 
       addDraggableWords( worddrop );
+
+      // Drop generated content into le story
+
+      var currentStory = generateProse( currentStoryRef );
+      storyDrop.innerHTML = currentStory.innerHTML;
+      storyTitleElement.innerText = getStoryTitle( currentStoryRef );
+
 
       $( ".draggable" ).draggable({revert: "invalid"});
       // draggable.forEach( function (grabit) {
@@ -17,34 +27,70 @@ window.onload = function () {
       // });
       $('#wordpick').droppable();
 
-      $( ".dropzone.noun" ).droppable({
-        accept: ".noun",
-        drop: function( event, ui ) {
-          basicDropCallback( event, ui, this);
-        }
-      });
-
-      $( ".dropzone.nounplural" ).droppable({
-        accept: ".nounplural",
-        classes: {
-          "ui-droppable-active": "ui-state-highlight"
-        },
-        drop: function( event, ui ) {
-          basicDropCallback( event, ui, this);
-        }
-      });
-
-      $( ".dropzone.adjective" ).droppable(
-        {
-          accept: ".adjective",
+      ["noun", "verb", "adjective", "adverb", "nounplural"].forEach( function (wordType) {
+        $( ".dropzone."+wordType ).droppable({
+          accept: "."+wordType,
           classes: {
             "ui-droppable-active": "ui-state-highlight"
           },
           drop: function( event, ui ) {
             basicDropCallback( event, ui, this);
           }
-        }
-      );
+        });
+      });
+        
+
+      // $( ".dropzone.noun" ).droppable({
+      //   accept: ".noun",
+      //   classes: {
+      //     "ui-droppable-active": "ui-state-highlight"
+      //   },
+      //   drop: function( event, ui ) {
+      //     basicDropCallback( event, ui, this);
+      //   }
+      // });
+
+      // $( ".dropzone.verb" ).droppable({
+      //   accept: ".verb",
+      //   classes: {
+      //     "ui-droppable-active": "ui-state-highlight"
+      //   },
+      //   drop: function( event, ui ) {
+      //     basicDropCallback( event, ui, this);
+      //   }
+      // });
+
+      // $( ".dropzone.adverb" ).droppable({
+      //   accept: ".adverb",
+      //   classes: {
+      //     "ui-droppable-active": "ui-state-highlight"
+      //   },
+      //   drop: function( event, ui ) {
+      //     basicDropCallback( event, ui, this);
+      //   }
+      // });
+
+      // $( ".dropzone.nounplural" ).droppable({
+      //   accept: ".nounplural",
+      //   classes: {
+      //     "ui-droppable-active": "ui-state-highlight"
+      //   },
+      //   drop: function( event, ui ) {
+      //     basicDropCallback( event, ui, this);
+      //   }
+      // });
+
+      // $( ".dropzone.adjective" ).droppable(
+      //   {
+      //     accept: ".adjective",
+      //     classes: {
+      //       "ui-droppable-active": "ui-state-highlight"
+      //     },
+      //     drop: function( event, ui ) {
+      //       basicDropCallback( event, ui, this);
+      //     }
+      //   }
+      // );
 
       $('#calculatefix').click(function (event) {
         // $('.calculatescore').text("haha sooo funny");
@@ -86,9 +132,20 @@ var fillInDropWithTarget = function fillInDropWithTarget( dragged, dropzone ){
 
 var addDraggableWords = function addDraggableWords( dropzoneElement ) {
   
-  var adjectives = createManyWords( "adjective", 5);
-  var nouns = createManyWords( "noun", 2);
+  var adjectives = createManyWords( "adjective", Math.floor(Math.random()*5) +1);
+  var nouns = createManyWords( "noun", Math.floor(Math.random()*5) +1 );
+  var adverbs = createManyWords( "adverb", Math.floor(Math.random()*5) + 1);
+  var verbs = createManyWords( "verb", Math.floor(Math.random()*5)+1);
   adjectives.forEach( function (draggableWord) {
+    dropzoneElement.appendChild(draggableWord);
+  });
+  nouns.forEach( function (draggableWord) {
+    dropzoneElement.appendChild(draggableWord);
+  });
+  adverbs.forEach( function (draggableWord) {
+    dropzoneElement.appendChild(draggableWord);
+  });
+  verbs.forEach( function (draggableWord) {
     dropzoneElement.appendChild(draggableWord);
   });
 }
@@ -154,7 +211,17 @@ var wordReference = {
   adverb: {
     "refreshingly": 4,
     "stupidly": 3,
-    "diametrically": 5
+    "diametrically": 5,
+    "really": 2
+  },
+  verb: {
+    "galloped": 2,
+    "refuted": 3,
+    "agonized": 3,
+    "interpolated": 5,
+    "magnified": 3,
+    "heard": 1,
+    "smelled": 1
   }
 };
 

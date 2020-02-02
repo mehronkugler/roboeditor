@@ -20,29 +20,41 @@
   padding: 30px;
   border: 5px solid gray;
   font-family: serif;
+  height: 350px;
+  text-align: left;
+  line-height: 2rem;
 }
 
 #mainarea {
-  width: 768px;
+  width: 1024px;
   border: 3px solid gray;
+  margin: 0 auto;
 }
 
 #gamearea {
-  width: 500px;
+  width: 960px;
   margin: 0 auto;
   margin-top: 0px;
   text-align: center;
   line-height: 50px;
   border: 1px solid gray;
-  border-radius: 50px;
+  /*border-radius: 50px;*/
   box-shadow: 2px 2px 25px gray;
-  height: 500px;
+  /*height: 500px;*/
   margin-top: 49px;
   position: relative;
+  background: white;
+  margin-bottom: 20px;
+  padding: 20px;
 }
 
 #wordpick {
   margin-top: 12px;
+}
+
+#worddrop {
+  width: 100%;
+display: block;
 }
 
 .fakeeditor {
@@ -52,6 +64,8 @@
   border-radius: 3px;
   background-color: #E5F3F6;
   font-family: sans-serif;
+  height: 32px;
+  line-height: 26px;
 }
 .fakeeditor > span {
   display: inline;
@@ -83,6 +97,8 @@
   /*margin: 10px;*/
   background: #eee;
   border: 2px solid #000;
+  display: inline;
+  line-height: 52px;
 }
 
 /* [DROP ZONE HIGHLIGHTS] */
@@ -112,7 +128,7 @@ border-radius: 0;
 -webkit-transition: background-color 0.25s ease-out, color 0.25s ease-out;
 transition: background-color 0.25s ease-out, color 0.25s ease-out;
 font-family: inherit;
-font-size: 0.9rem;
+font-size: 1.5rem;
 -webkit-appearance: none;
 line-height: 1;
 text-align: center;
