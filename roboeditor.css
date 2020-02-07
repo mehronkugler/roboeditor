@@ -212,6 +212,10 @@ cursor: pointer;}
   width: 75px;
 }
 
+#playerbotname {
+  display: block;
+}
+
 .lowscore, .mediumscore, .highscore, #thankyou {
   display: none;
 }

@@ -15,7 +15,7 @@ window.onload = function () {
     2: "img/profile2_lg.png",
     3: "img/profile3_lg.png",
     4: "img/profile4_lg.png"
-  }
+  };
 
   var profileImage = playerProfileImages[String(selectedBot)];
 
@@ -24,15 +24,17 @@ window.onload = function () {
     2: "Profound Bot",
     3: "Security Bot",
     4: "Lampshade"
-  }
+  };
 
   var updateProfileImage = function updateProfileImage( botNumber ) {
-    $('#playerprofileimage').attr("src", playerProfileImages[String(botNumber)]);
-  }
-  var updatePlayerName = function updatePlayerName( botNumber ) {
-    $('#playerbotname').text( botNames[String(botNumber)]);
-  }
+    let profileImage = document.getElementById('playerprofileimage');
+    profileImage.setAttribute("src", playerProfileImages[String(botNumber)]);
+  };
 
+  var updatePlayerName = function updatePlayerName( botNumber ) {
+    let botName = document.getElementById('playerbotname');
+    botName.firstChild.nodeValue = botNames[String(botNumber)];
+  };
 
   /**
    * Generate story, add droppables, put on screen
@@ -42,18 +44,14 @@ window.onload = function () {
   var generateStoryPageElements = function( currentStoryRef ) {
 
     var currentStory = generateProse( currentStoryRef );
-        storyDrop.innerHTML = currentStory.innerHTML;
-        storyTitleElement.innerText = getStoryTitle( currentStoryRef );
+    var scoreCard = document.querySelector('.scorecard'),
+        calculateFix = document.getElementById('calculatefix');
 
+    storyDrop.innerHTML = currentStory.innerHTML,
+    storyTitleElement.innerText = getStoryTitle( currentStoryRef );
 
         $( ".draggable" ).draggable({revert: "invalid"});
-        // draggable.forEach( function (grabit) {
-        //   $(grabit).draggable({revert: "invalid"});
-        // });
 
-        // dropzones.forEach( function (dropit) {
-        //   $(dropit).droppable();
-        // });
         $('#wordpick').droppable();
 
         ["noun", "verb", "adjective", "adverb", "nounplural"].forEach( function (wordType) {
@@ -68,30 +66,35 @@ window.onload = function () {
           });
         });
 
-        $('#calculatefix').click(function (event) {
-          // $('.calculatescore').text("haha sooo funny");
-          window.console.log("im still relevant)");
+
+        calculateFix.addEventListener("click", function (event) {
           var scoreThisRound = calculateScore();
-          $('.scorecard').show();
-          $('.scorecontent').text(
+          var scoreCard = document.querySelector('.scorecard');
+          var scoreTextEl = document.querySelector('.scorecard h4');
+          scoreCard.style.display = "inherit";
+          scoreTextEl.textContent = "" +
             "Through fine use of wordsmithery and keyboard mashing, " +
             "your efforts have earned you " + String( scoreThisRound ) + " points."
-           );
+          ;
           updateScore( scoreThisRound );
-        });
+        }, false);
 
-        $('#closescorecard').click(function (event) {
-          $('.scorecard').hide();
-        });
-  }
+        // scoreCard.addEventListener("click", 
+        //   function () {
+        //     // var scoreCard = document.querySelector('.scorecard');
+        //     scoreCard.style.display = "none";
+        //   },
+        //   false
+        // );
+
+  };
 
   var basicDropCallback = function basicDropCallback( event, ui, dropObject ) {
-    $( dropObject )
-        .addClass( "ui-state-default" );
+      dropObject.classList.add( "ui-state-default" );
       ui.draggable.draggable("disable");
       fillInDropWithTarget( ui.draggable, $(dropObject) );
       window.console.log("Dropped a word");
-  }
+  };
 
   var fillInDropWithTarget = function fillInDropWithTarget( dragged, dropzone ){
     dropzone.text("");
@@ -124,7 +127,7 @@ window.onload = function () {
     verbs.forEach( function (draggableWord) {
       dropzoneElement.appendChild(draggableWord);
     });
-  }
+  };
 
   /**
     return list of DIV-ed up words
@@ -135,7 +138,7 @@ window.onload = function () {
       wordList.push( createDraggableWord( wordType ) );
     }
     return wordList;
-  }
+  };
 
   var createDraggableWord = function createDraggableWord( wordType ) {
     // word types: noun, adjective
@@ -149,7 +152,7 @@ window.onload = function () {
     draggableWord.setAttribute("score", wordScore);
     draggableWord.textContent = randomWordText;
     return draggableWord;
-  }
+  };
 
   // <div class="draggable adjective">scintillating</div>
   //         <div class="draggable adjective">refreshing</div>
@@ -165,7 +168,7 @@ window.onload = function () {
     });
 
     return (scoreOfUsedWords - scoreOfExistingWords);
-  }
+  };
 
   var wordReference = {
     adjective: {
@@ -201,7 +204,6 @@ window.onload = function () {
     }
   };
 
-
   var createIntro = function createIntro() {
     var introElement = document.createElement('DIV');
     const description = `
@@ -213,20 +215,20 @@ window.onload = function () {
       workstation. There is a document open.
   `;
 
-  }
-
-  document.onkeydown = function(evt) {
-      evt = evt || window.event;
-      var isEscape = false;
-      if ("key" in evt) {
-          isEscape = (evt.key === "Escape" || evt.key === "Esc");
-      } else {
-          isEscape = (evt.keyCode === 27);
-      }
-      if (isEscape) {
-          $('.scorecard').hide();
-      }
   };
+
+  // document.onkeydown = function(evt) {
+  //     evt = evt || window.event;
+  //     var isEscape = false;
+  //     if ("key" in evt) {
+  //         isEscape = (evt.key === "Escape" || evt.key === "Esc");
+  //     } else {
+  //         isEscape = (evt.keyCode === 27);
+  //     }
+  //     if (isEscape) {
+  //       hide('.scorecard');
+  //     }
+  // };
 
   var getFinalRatingWord = function getFinalRatingWord( score ) {
     var finalWord = "Misunderstood";
@@ -235,67 +237,84 @@ window.onload = function () {
     } else if (score > 25) {
       finalWord = "Admired";
     } else if (score > 100) {
-      finalWord = "Gaming the system"
+      finalWord = "Gaming the system";
     }
     return finalWord;
-  }
+  };
 
   var showEndGameAchievementText = function( score ) {
     if (score < 11) {
-      $('.lowscore').show();
+      show('.lowscore');
     } else if (score > 10) {
-      $('.mediumscore').show();
+      show('.mediumscore');
     } else if (score > 25) {
-      $('.highscore').show();
+      show('.highscore');
     } else if (score > 100) {
-      $('.highscore').show();
+      show('.highscore');
     }
-  }
+  };
 
   var showFinalScreen = function showFinalScreen() {
     var ratingWord = getFinalRatingWord( playerPoints );
     showEndGameAchievementText( playerPoints );
-    $('#admiredword').text(ratingWord);
-    $('#thankyou').show();
-  }
+
+    let admiredWord = document.getElementById('admiredword');
+    admiredWord.firstChild.nodeValue = ratingWord;
+    let thankYou = document.getElementById('thankyou');
+    thankYou.style.display = "inherit";
+  };
 
   var updateScore = function updateScore( scoreToAdd ) {
     playerPoints = playerPoints + scoreToAdd;
-    $('#currentscore').text(String(playerPoints));
-  }
+    let currentScore = document.getElementById('currentscore');
+    currentScore.textContent = String(playerPoints);
+  };
 
   var cleanUpGameField = function cleanUpGameField() {
     storyDrop.innerHTML = "";
     worddrop.innerHTML = "";
-  }
+  };
 
-  $('#nextstory').click( function() {
-    $('.scorecard').hide();
+  var nextStory = document.getElementById('nextstory');
+  nextStory.addEventListener("click", function() {
+    hide('.scorecard');
     cleanUpGameField();
     startBoard( listOfStories );
-  });
+  }, false);
 
-  $('.button.charpick').click( function (event) {
-    var pickedBot = $(this).attr("charchoice");
-    updateProfileImage( pickedBot );
-    updatePlayerName( pickedBot );
-    $('#dropnamelabel').text(botNames[String(pickedBot)]);
-    $('#charselect').hide();
-  });
+  var charSelectBtn = document.querySelectorAll(".button.charpick");
 
+  charSelectBtn.forEach( function( selectBtn ) {
+    selectBtn.addEventListener("click", function (event) {
+      var pickedBot = $(this).attr("charchoice");
+      updateProfileImage( pickedBot );
+      updatePlayerName( pickedBot );
+      let dropNameLabel = document.getElementById('dropnamelabel');
+      dropNameLabel.textContent = botNames[String(pickedBot)];
+      hide('#charselect');
+    }, false);
+  });
 
   var startBoard = function startBoard( activeStoriesList ) {
     var currentStoryRef = activeStoriesList.pop();
     if (currentStoryRef) {
       addDraggableWords( worddrop );
       generateStoryPageElements( currentStoryRef );
-      // updateScore( 0 );
     } else {
-    // alert("OUT OF STORIES BREH");
-    showFinalScreen();
+      showFinalScreen();
     }
-  }
+  };
 
   startBoard( listOfStories );
 
-}
+  function show( docQuery ) {
+    var elem = document.querySelector( docQuery );
+    elem.style.display = "inherit";
+  }
+
+  function hide( docQuery ) {
+    var elem = document.querySelector( docQuery );
+    elem.style.display = "none";
+  }
+
+};
