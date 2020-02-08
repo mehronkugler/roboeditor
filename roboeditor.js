@@ -66,7 +66,6 @@ window.onload = function () {
           });
         });
 
-
         calculateFix.addEventListener("click", function (event) {
           var scoreThisRound = calculateScore();
           var scoreCard = document.querySelector('.scorecard');
@@ -78,15 +77,6 @@ window.onload = function () {
           ;
           updateScore( scoreThisRound );
         }, false);
-
-        // scoreCard.addEventListener("click", 
-        //   function () {
-        //     // var scoreCard = document.querySelector('.scorecard');
-        //     scoreCard.style.display = "none";
-        //   },
-        //   false
-        // );
-
   };
 
   var basicDropCallback = function basicDropCallback( event, ui, dropObject ) {
