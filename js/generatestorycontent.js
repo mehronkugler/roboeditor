@@ -10,7 +10,7 @@
 
 var getStoryTitle = function getStoryTitle( proseName ) {
   return storiesData[proseName].title;
-}
+};
 
 /**
  * @return HTMLElement that can be inserted in the game area

@@ -160,11 +160,11 @@ var robotVocabularies = {
       "taxpayers": 3
     }
   },
-  "Random Bot": {
+  "Default Bot": {
     // default words
     adjective: {
       "scintillating": 4,
-      "dented": ,
+      "dented": 2,
       "valuable": 4,
       "ominous": 3,
       "chipped": 1,

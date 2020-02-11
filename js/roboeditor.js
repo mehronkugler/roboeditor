@@ -10,6 +10,26 @@ window.onload = function () {
       playerPoints = 0,
       selectedBot = 1;
 
+  var setPoints = function setPoints( newScore ) {
+    playerPoints = newScore;
+  };
+
+  var getPoints = function getPoints() {
+    return playerPoints;
+  };
+
+  var addPoints = function addPoints( pointsToAdd ) {
+    setPoints( getPoints() + pointsToAdd);
+  };
+
+  var getSelectedBot = function getSelectedBot() {
+    return selectedBot;
+  };
+
+  var setSelectedBot = function setSelectedBot( pickedBot ) {
+    selectedBot = pickedBot;
+  }
+
   var playerProfileImages = {
     1: "img/profile1_lg.png",
     2: "img/profile2_lg.png",
@@ -99,12 +119,24 @@ window.onload = function () {
     dragged.attr("oldscore", oldScore);
   };
 
-  var addDraggableWords = function addDraggableWords( dropzoneElement ) {
+  var choosePlayerWordSource = function choosePlayerWordSource( selectedBot ) {
+    return robotVocabularies[ botNames[ String(selectedBot)] ];
+  };
+
+  var addDraggableWords = function addDraggableWords( 
+    dropzoneElement, sourceDictionary = wordReference ) {
     
-    var adjectives = createManyWords( "adjective", Math.floor(Math.random()*5) +1);
-    var nouns = createManyWords( "noun", Math.floor(Math.random()*5) +1 );
-    var adverbs = createManyWords( "adverb", Math.floor(Math.random()*5) + 1);
-    var verbs = createManyWords( "verb", Math.floor(Math.random()*5)+1);
+    var adjectives = createManyWords( 
+      "adjective", Math.floor(Math.random()*5) +1, sourceDictionary);
+    var nouns = createManyWords( 
+      "noun", Math.floor(Math.random()*5) +1, sourceDictionary );
+    var adverbs = createManyWords( 
+      "adverb", Math.floor(Math.random()*5) + 1, sourceDictionary);
+    var verbs = createManyWords( 
+      "verb", Math.floor(Math.random()*5)+1, sourceDictionary);
+    var nounplural = createManyWords( 
+      "nounplural", Math.floor(Math.random()*2)+1, sourceDictionary);
+
     adjectives.forEach( function (draggableWord) {
       dropzoneElement.appendChild(draggableWord);
     });
@@ -117,26 +149,32 @@ window.onload = function () {
     verbs.forEach( function (draggableWord) {
       dropzoneElement.appendChild(draggableWord);
     });
+    nounplural.forEach( function (draggableWord) {
+      dropzoneElement.appendChild(draggableWord);
+    });
   };
 
   /**
     return list of DIV-ed up words
   */
-  var createManyWords = function createManyWords( wordType, numWords ) {
+  var createManyWords = function createManyWords( 
+    wordType, numWords, sourceDictionary
+    ) {
     var wordList = [];
     for (var i = 0; i < numWords; i++) {
-      wordList.push( createDraggableWord( wordType ) );
+      wordList.push( createDraggableWord( wordType, sourceDictionary ) );
     }
     return wordList;
   };
 
-  var createDraggableWord = function createDraggableWord( wordType ) {
+  var createDraggableWord = function createDraggableWord( 
+    wordType, sourceDictionary ) {
     // word types: noun, adjective
-    let wordList = Object.keys(wordReference[wordType]);
+    let wordList = Object.keys(sourceDictionary[wordType]);
     var randomWordText = wordList[
       Math.floor(Math.random()*wordList.length)
     ];
-    var wordScore = wordReference[wordType][randomWordText];
+    var wordScore = sourceDictionary[wordType][randomWordText];
     var draggableWord = document.createElement('DIV');
     draggableWord.classList.add("draggable", wordType);
     draggableWord.setAttribute("score", wordScore);
@@ -207,19 +245,6 @@ window.onload = function () {
 
   };
 
-  // document.onkeydown = function(evt) {
-  //     evt = evt || window.event;
-  //     var isEscape = false;
-  //     if ("key" in evt) {
-  //         isEscape = (evt.key === "Escape" || evt.key === "Esc");
-  //     } else {
-  //         isEscape = (evt.keyCode === 27);
-  //     }
-  //     if (isEscape) {
-  //       hide('.scorecard');
-  //     }
-  // };
-
   var getFinalRatingWord = function getFinalRatingWord( score ) {
     var finalWord = "Misunderstood";
     if (score > 10) {
@@ -255,9 +280,10 @@ window.onload = function () {
   };
 
   var updateScore = function updateScore( scoreToAdd ) {
-    playerPoints = playerPoints + scoreToAdd;
+    // playerPoints = playerPoints + scoreToAdd;
+    addPoints( scoreToAdd );
     let currentScore = document.getElementById('currentscore');
-    currentScore.textContent = String(playerPoints);
+    currentScore.textContent = String( getPoints() );
   };
 
   var cleanUpGameField = function cleanUpGameField() {
@@ -276,26 +302,29 @@ window.onload = function () {
 
   charSelectBtn.forEach( function( selectBtn ) {
     selectBtn.addEventListener("click", function (event) {
-      var pickedBot = $(this).attr("charchoice");
+      var pickedBot = parseInt( $(this).attr("charchoice") );
+      setSelectedBot( pickedBot );
       updateProfileImage( pickedBot );
       updatePlayerName( pickedBot );
       let dropNameLabel = document.getElementById('dropnamelabel');
       dropNameLabel.textContent = botNames[String(pickedBot)];
       hide('#charselect');
+      startBoard( listOfStories );
     }, false);
   });
 
   var startBoard = function startBoard( activeStoriesList ) {
+    var sourceDictionary = choosePlayerWordSource( selectedBot );
     var currentStoryRef = activeStoriesList.pop();
     if (currentStoryRef) {
-      addDraggableWords( worddrop );
+      addDraggableWords( worddrop, sourceDictionary );
       generateStoryPageElements( currentStoryRef );
     } else {
       showFinalScreen();
     }
   };
 
-  startBoard( listOfStories );
+  // startBoard( listOfStories );
 
   function show( docQuery ) {
     var elem = document.querySelector( docQuery );
