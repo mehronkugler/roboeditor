@@ -70,33 +70,33 @@ window.onload = function () {
     storyDrop.innerHTML = currentStory.innerHTML,
     storyTitleElement.innerText = getStoryTitle( currentStoryRef );
 
-        $( ".draggable" ).draggable({revert: "invalid"});
+    $( ".draggable" ).draggable({revert: "invalid"});
 
-        $('#wordpick').droppable();
+    $('#wordpick').droppable();
 
-        ["noun", "verb", "adjective", "adverb", "nounplural"].forEach( function (wordType) {
-          $( ".dropzone."+wordType ).droppable({
-            accept: "."+wordType,
-            classes: {
-              "ui-droppable-active": "ui-state-highlight"
-            },
-            drop: function( event, ui ) {
-              basicDropCallback( event, ui, this);
-            }
-          });
-        });
+    ["noun", "verb", "adjective", "adverb", "nounplural"].forEach( function (wordType) {
+      $( ".dropzone."+wordType ).droppable({
+        accept: "."+wordType,
+        classes: {
+          "ui-droppable-active": "ui-state-highlight"
+        },
+        drop: function( event, ui ) {
+          basicDropCallback( event, ui, this);
+        }
+      });
+    });
 
-        calculateFix.addEventListener("click", function (event) {
-          var scoreThisRound = calculateScore();
-          var scoreCard = document.querySelector('.scorecard');
-          var scoreTextEl = document.querySelector('.scorecard h4');
-          scoreCard.style.display = "inherit";
-          scoreTextEl.textContent = "" +
-            "Through fine use of wordsmithery and keyboard mashing, " +
-            "your efforts have earned you " + String( scoreThisRound ) + " points."
-          ;
-          updateScore( scoreThisRound );
-        }, false);
+    calculateFix.addEventListener("click", function (event) {
+      var scoreThisRound = calculateScore();
+      var scoreCard = document.querySelector('.scorecard');
+      var scoreTextEl = document.querySelector('.scorecard h4');
+      scoreCard.style.display = "inherit";
+      scoreTextEl.textContent = "" +
+        "Through fine use of wordsmithery and keyboard mashing, " +
+        "your efforts have earned you " + String( scoreThisRound ) + " points."
+      ;
+      updateScore( scoreThisRound );
+    }, false);
   };
 
   var basicDropCallback = function basicDropCallback( event, ui, dropObject ) {

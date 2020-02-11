@@ -2,7 +2,7 @@
 
 @font-face {
   font-family: PlayfairDisplay;
-  src: url(fonts/PlayfairDisplay-Regular.ttf);
+  src: url(../fonts/PlayfairDisplay-Regular.ttf);
 }
 
 *, h1, h2, h3, h4, h5 {
