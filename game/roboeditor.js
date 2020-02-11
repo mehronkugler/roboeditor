@@ -1,3 +1,6 @@
+// import { getStoryTitle, generateProse } from './generatestorycontent.js';
+
+
 window.onload = function () {
 //   window.console.log("loadedwooo");
 //   // GET ALL THE PLAYERS - DRAGGABLE AND DROP ZONES
@@ -8,7 +11,8 @@ window.onload = function () {
       storyTitleElement = document.querySelector('.fakeeditor > span.title'),
       listOfStories = ['taleOfTooBorings', 'travelBlog1', 'darkAndStormy'],
       playerPoints = 0,
-      selectedBot = 1;
+      selectedBot = 1,
+      calculateFix = document.getElementById('calculatefix');
 
   var setPoints = function setPoints( newScore ) {
     playerPoints = newScore;
@@ -64,8 +68,7 @@ window.onload = function () {
   var generateStoryPageElements = function( currentStoryRef ) {
 
     var currentStory = generateProse( currentStoryRef );
-    var scoreCard = document.querySelector('.scorecard'),
-        calculateFix = document.getElementById('calculatefix');
+    var scoreCard = document.querySelector('.scorecard');
 
     storyDrop.innerHTML = currentStory.innerHTML,
     storyTitleElement.innerText = getStoryTitle( currentStoryRef );
@@ -86,17 +89,6 @@ window.onload = function () {
       });
     });
 
-    calculateFix.addEventListener("click", function (event) {
-      var scoreThisRound = calculateScore();
-      var scoreCard = document.querySelector('.scorecard');
-      var scoreTextEl = document.querySelector('.scorecard h4');
-      scoreCard.style.display = "inherit";
-      scoreTextEl.textContent = "" +
-        "Through fine use of wordsmithery and keyboard mashing, " +
-        "your efforts have earned you " + String( scoreThisRound ) + " points."
-      ;
-      updateScore( scoreThisRound );
-    }, false);
   };
 
   var basicDropCallback = function basicDropCallback( event, ui, dropObject ) {
@@ -281,7 +273,9 @@ window.onload = function () {
 
   var updateScore = function updateScore( scoreToAdd ) {
     // playerPoints = playerPoints + scoreToAdd;
-    addPoints( scoreToAdd );
+    // addPoints( scoreToAdd );
+    let newTotal = getPoints() + scoreToAdd;
+    setPoints( newTotal );
     let currentScore = document.getElementById('currentscore');
     currentScore.textContent = String( getPoints() );
   };
@@ -312,6 +306,18 @@ window.onload = function () {
       startBoard( listOfStories );
     }, false);
   });
+
+  calculateFix.addEventListener("click", function (event) {
+    var scoreThisRound = calculateScore();
+    var scoreCard = document.querySelector('.scorecard');
+    var scoreTextEl = document.querySelector('.scorecard h4');
+    scoreCard.style.display = "inherit";
+    scoreTextEl.textContent = "" +
+      "Through fine use of wordsmithery and keyboard mashing, " +
+      "your efforts have earned you " + String( scoreThisRound ) + " points."
+    ;
+    updateScore( scoreThisRound );
+  }, false);
 
   var startBoard = function startBoard( activeStoriesList ) {
     var sourceDictionary = choosePlayerWordSource( selectedBot );

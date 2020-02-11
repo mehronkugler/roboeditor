@@ -187,4 +187,4 @@ var storiesData = {
       verb: 1
     }
   }
-}
+};
