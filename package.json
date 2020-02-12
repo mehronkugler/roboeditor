@@ -1,25 +1,11 @@
 {
   "name": "robo-editor",
-<<<<<<< HEAD
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.html",
-  "dependencies": {
-    "express": "^4.17.1",
-    "serve-static": "^1.14.1"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node_modules/gulp-cli/bin/gulp.js js"
-=======
   "version": "0.0.1",
   "description": "Play as a robot and 'fix' articles mad-lib style",
   "main": "index.html",
   "scripts": {
     "game": "node game.js",
     "devgame": "node_modules/nodemon/bin/nodemon.js game.js"
->>>>>>> nodeserver
   },
   "repository": {
     "type": "git",
@@ -30,9 +16,6 @@
   "bugs": {
     "url": "https://gitlab.com/mehronkugler/robo-editor/issues"
   },
-<<<<<<< HEAD
-  "homepage": "https://gitlab.com/mehronkugler/robo-editor#README"
-=======
   "homepage": "https://gitlab.com/mehronkugler/robo-editor#README",
   "devDependencies": {
     "chai": "^4.2.0",
@@ -42,5 +25,4 @@
   "dependencies": {
     "express": "^4.17.1"
   }
->>>>>>> nodeserver
 }
