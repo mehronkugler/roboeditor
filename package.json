@@ -4,7 +4,6 @@
   "description": "Play as a robot and 'fix' articles mad-lib style",
   "main": "index.html",
   "scripts": {
-    "build": "webpack",
     "game": "node game.js",
     "devgame": "node_modules/nodemon/bin/nodemon.js game.js"
   },
@@ -19,11 +18,11 @@
   },
   "homepage": "https://gitlab.com/mehronkugler/robo-editor#README",
   "devDependencies": {
-    "coffeescript": "^2.5.1",
-    "gulp": "^4.0.2",
-    "gulp-cli": "^2.2.0",
-    "nodemon": "^2.0.2",
-    "webpack": "^4.41.5",
-    "webpack-cli": "^3.3.10"
+    "chai": "^4.2.0",
+    "mocha": "^7.0.1",
+    "nodemon": "^2.0.2"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
   }
 }

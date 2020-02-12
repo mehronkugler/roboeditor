@@ -7,7 +7,7 @@ var populateCharacterList = function populateCharacterList( characterJsonList ) 
   var playerCharacterList = document.getElementById('charselect');
 
   for (let i = 0; i < characterJsonList.length; i++) {
-    playerCharacterList.appendChild( createProfileElement( characterJson, i ) );
+    playerCharacterList.appendChild( createProfileElement( characterJsonList[i], i ) );
   }
 
 };
@@ -34,7 +34,8 @@ var createProfileElement = function createProfileElement( characterJson, profile
   var profileSummary = document.createElement('P');
   var pickButton     = document.createElement('BUTTON');
 
-  profileImage.setAttribute('src', "/img"+characterJson.portrait);
+  profile.classList.add("profile");
+  profileImage.setAttribute('src', "/img/"+characterJson.portrait);
   profileHeader.innerText = characterJson.name;
   profileSummary.innerText = characterJson.introText;
   pickButton.classList.add("button", "charpick");
@@ -51,4 +52,4 @@ var createProfileElement = function createProfileElement( characterJson, profile
 
 };
 
-module.exports = populateCharacterList;
+export default populateCharacterList;

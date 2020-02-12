@@ -255,6 +255,7 @@ height: 143%;
 padding:: 20px;
 }
 
+
 #charselect .profile {
   display: inline-block;
   vertical-align: top;
@@ -265,6 +266,14 @@ padding:: 20px;
 #charselect > h1,
 #charselect > h4 {
   text-align: center;
+}
+
+div.profile > p {
+  height: 100px;
+}
+
+.button.charpick {
+  display: block;
 }
 
 #editormusic {

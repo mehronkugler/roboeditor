@@ -1,6 +1,23 @@
 import { getStoryTitle, generateProse } from '/game/generatestorycontent.mjs';
 import robotVocabularies from '/game/vocabularies.mjs';
 import gameEndingTexts from '/game/gameendings.mjs';
+import populateCharacterList from '/game/_charselection.mjs';
+
+
+var readCharactersFromApi = function readCharactersFromApi() {
+
+  $.ajax({
+    type: "GET",
+    url: "/api/characters",
+    success: function(result) {
+      populateCharacterList( result );
+      // console.log(result);
+    }
+  });
+
+};
+
+
 
 
 window.onload = function () {
@@ -345,5 +362,7 @@ window.onload = function () {
     var elem = document.querySelector( docQuery );
     elem.style.display = "none";
   }
+
+  readCharactersFromApi();
 
 };
