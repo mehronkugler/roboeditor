@@ -3,7 +3,7 @@ const game = express();
 const path = require('path');
 const port = 3000;
 
-const readPlayerCharacters = require('./game/_readplayercharacters.mjs');
+const readPlayerCharacters = require('./game/_readplayercharacters.cjs');
 
 express.static.mime.define({'application/javascript': ['js']});
 
@@ -24,4 +24,4 @@ game.get('/api/characters', function(req, res) {
   res.json(playerCharacters);
 });
 
-game.listen(port, () => console.log(`Example app listening on port ${port}!`));
+game.listen(port, () => console.log(`Robo Editor game listening on port ${port}!`));
