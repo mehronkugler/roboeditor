@@ -1,5 +1,7 @@
 import { getStoryTitle, generateProse } from '/game/generatestorycontent.js';
 import robotVocabularies from '/game/vocabularies.js';
+import gameEndingTexts from '/game/gameendings.js';
+
 
 window.onload = function () {
 //   window.console.log("loadedwooo");
@@ -249,15 +251,19 @@ window.onload = function () {
   };
 
   var showEndGameAchievementText = function( score ) {
+    let endingTextElement = document.querySelector('.scoretext');
+    var endingText = "";
     if (score < 11) {
-      show('.lowscore');
+      endingText = gameEndingTexts.lowScore;
     } else if (score > 10) {
-      show('.mediumscore');
+      endingText = gameEndingTexts.mediumScore;
     } else if (score > 25) {
-      show('.highscore');
-    } else if (score > 100) {
-      show('.highscore');
+      endingText = gameEndingTexts.highScore;
     }
+    // } else if (score > 100) {
+    //   show('.highscore');
+    // }
+    endingTextElement.innerText = endingText;
   };
 
   var showFinalScreen = function showFinalScreen() {
