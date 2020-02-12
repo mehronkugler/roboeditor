@@ -1,6 +1,6 @@
-import { getStoryTitle, generateProse } from '/game/generatestorycontent.js';
-import robotVocabularies from '/game/vocabularies.js';
-import gameEndingTexts from '/game/gameendings.js';
+import { getStoryTitle, generateProse } from '/game/generatestorycontent.mjs';
+import robotVocabularies from '/game/vocabularies.mjs';
+import gameEndingTexts from '/game/gameendings.mjs';
 
 
 window.onload = function () {
