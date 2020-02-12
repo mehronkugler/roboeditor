@@ -3,23 +3,6 @@ import robotVocabularies from '/game/vocabularies.mjs';
 import gameEndingTexts from '/game/gameendings.mjs';
 import populateCharacterList from '/game/_charselection.mjs';
 
-
-var readCharactersFromApi = function readCharactersFromApi() {
-
-  $.ajax({
-    type: "GET",
-    url: "/api/characters",
-    success: function(result) {
-      populateCharacterList( result );
-      // console.log(result);
-    }
-  });
-
-};
-
-
-
-
 window.onload = function () {
 //   window.console.log("loadedwooo");
 //   // GET ALL THE PLAYERS - DRAGGABLE AND DROP ZONES
@@ -32,6 +15,39 @@ window.onload = function () {
       playerPoints = 30,
       selectedBot = 1,
       calculateFix = document.getElementById('calculatefix');
+
+  var readCharactersFromApi = function readCharactersFromApi() {
+
+    $.ajax({
+      type: "GET",
+      url: "/api/characters",
+      success: function(result) {
+        populateCharacterList( result );
+        letPlayerPickCharacters();
+        // console.log(result);
+      }
+    });
+
+  };
+
+  var letPlayerPickCharacters = function letPlayerPickCharacters() {
+
+    var charSelectBtn = document.querySelectorAll(".button.charpick");
+
+    charSelectBtn.forEach( function( selectBtn ) {
+      selectBtn.addEventListener("click", function (event) {
+        var pickedBot = parseInt( $(this).attr("charchoice") );
+        setSelectedBot( pickedBot );
+        updateProfileImage( pickedBot );
+        updatePlayerName( pickedBot );
+        let dropNameLabel = document.getElementById('dropnamelabel');
+        dropNameLabel.textContent = botNames[String(pickedBot)];
+        hide('#charselect');
+        startBoard( listOfStories );
+      }, false);
+    });
+
+  };
 
   var setPoints = function setPoints( newScore ) {
     playerPoints = newScore;
@@ -312,21 +328,6 @@ window.onload = function () {
     cleanUpGameField();
     startBoard( listOfStories );
   }, false);
-
-  var charSelectBtn = document.querySelectorAll(".button.charpick");
-
-  charSelectBtn.forEach( function( selectBtn ) {
-    selectBtn.addEventListener("click", function (event) {
-      var pickedBot = parseInt( $(this).attr("charchoice") );
-      setSelectedBot( pickedBot );
-      updateProfileImage( pickedBot );
-      updatePlayerName( pickedBot );
-      let dropNameLabel = document.getElementById('dropnamelabel');
-      dropNameLabel.textContent = botNames[String(pickedBot)];
-      hide('#charselect');
-      startBoard( listOfStories );
-    }, false);
-  });
 
   calculateFix.addEventListener("click", function (event) {
     var scoreThisRound = calculateScore();
