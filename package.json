@@ -1,0 +1,29 @@
+{
+  "name": "robo-editor",
+  "version": "0.0.1",
+  "description": "Play as a robot and 'fix' articles mad-lib style",
+  "main": "index.html",
+  "scripts": {
+    "build": "webpack",
+    "game": "node game.js",
+    "devgame": "node_modules/nodemon/bin/nodemon.js game.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/mehronkugler/robo-editor.git"
+  },
+  "author": "Mehron Kugler",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://gitlab.com/mehronkugler/robo-editor/issues"
+  },
+  "homepage": "https://gitlab.com/mehronkugler/robo-editor#README",
+  "devDependencies": {
+    "coffeescript": "^2.5.1",
+    "gulp": "^4.0.2",
+    "gulp-cli": "^2.2.0",
+    "nodemon": "^2.0.2",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
+  }
+}

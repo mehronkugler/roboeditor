@@ -10,7 +10,7 @@ window.onload = function () {
       storyDrop = document.getElementById('storydrop'),
       storyTitleElement = document.querySelector('.fakeeditor > span.title'),
       listOfStories = ['taleOfTooBorings', 'travelBlog1', 'darkAndStormy'],
-      playerPoints = 0,
+      playerPoints = 30,
       selectedBot = 1,
       calculateFix = document.getElementById('calculatefix');
 
@@ -22,23 +22,19 @@ window.onload = function () {
     return playerPoints;
   };
 
-  var addPoints = function addPoints( pointsToAdd ) {
-    setPoints( getPoints() + pointsToAdd);
-  };
-
   var getSelectedBot = function getSelectedBot() {
     return selectedBot;
   };
 
   var setSelectedBot = function setSelectedBot( pickedBot ) {
     selectedBot = pickedBot;
-  }
+  };
 
   var playerProfileImages = {
-    1: "img/profile1_lg.png",
-    2: "img/profile2_lg.png",
-    3: "img/profile3_lg.png",
-    4: "img/profile4_lg.png"
+    1: "/img/profile1_lg.png",
+    2: "/img/profile2_lg.png",
+    3: "/img/profile3_lg.png",
+    4: "/img/profile4_lg.png"
   };
 
   var profileImage = playerProfileImages[String(selectedBot)];
@@ -56,8 +52,11 @@ window.onload = function () {
   };
 
   var updatePlayerName = function updatePlayerName( botNumber ) {
-    let botName = document.getElementById('playerbotname');
-    botName.firstChild.nodeValue = botNames[String(botNumber)];
+    let botName = document.querySelectorAll('.playerbotname');
+    botName.forEach( function (nameElement) {
+      nameElement.textContent = botNames[String(botNumber)];
+    });
+    // botName.firstChild.nodeValue = botNames[String(botNumber)];
   };
 
   /**
@@ -273,7 +272,6 @@ window.onload = function () {
 
   var updateScore = function updateScore( scoreToAdd ) {
     // playerPoints = playerPoints + scoreToAdd;
-    // addPoints( scoreToAdd );
     let newTotal = getPoints() + scoreToAdd;
     setPoints( newTotal );
     let currentScore = document.getElementById('currentscore');

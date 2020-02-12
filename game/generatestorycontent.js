@@ -55,7 +55,7 @@ var generateProse = function generateProse( proseName ) {
   textElement.innerHTML = text;
 
   return textElement;
-}
+};
 
 /**
  * Create a span that has classes, for dropzones in prose
@@ -74,7 +74,7 @@ var createStoryWord = function createDraggableWord( wordType ) {
   draggableWord.setAttribute("score", wordScore);
   draggableWord.textContent = randomWordText;
   return draggableWord;
-}
+};
 
 var createManyStoryWords = function createManyWords( wordType, numWords ) {
   var wordList = [];
@@ -82,7 +82,7 @@ var createManyStoryWords = function createManyWords( wordType, numWords ) {
     wordList.push( createStoryWord( wordType ) );
   }
   return wordList;
-}
+};
 
 var storyWordReference = {
   adjective: {
@@ -171,11 +171,11 @@ var storiesData = {
 "I <span class=\"dropzone adverb\" score=\"3\">hesitantly</span>decided to go to SomewhereIsStan after a <adjective> friend "+
 "came up and <span class=\"dropzone verb\" score=\"3\">slapped</span> me in the face. "+
 "At first I was <adverb> hesitant, but I decided I <adverb> needed to search my "+
-"<span class=\"dropzone nouplural\" score=\"2\">feelings</span> and "+
-"check my <span class=\"dropzone nouplural\" score=\"1\">doubts</span>."+
+"<span class=\"dropzone nounplural\" score=\"2\">feelings</span> and "+
+"check my <span class=\"dropzone nounplural\" score=\"1\">doubts</span>."+
 "<br><br>"+
-"After checking in with the <span class=\"dropzone nouplural\" score=\"3\">universe</span> "+
-"I was <span class=\"dropzone verb\" score=\"2\">glamping</span> through the "+
+"After checking in with the <span class=\"dropzone nounplural\" score=\"3\">universe</span> "+
+"I <span class=\"dropzone verb\" score=\"2\">glamped</span> through the "+
 "<span class=\"dropzone adjective\" score=\"2\">slushy</span> "+
 "highlands of SomewhereIsStan, free as a <span class=\"dropzone noun\" score=\"1\">wage</span> "+
 "<span class=\"dropzone noun\" score=\"1\">slave</span>.",
