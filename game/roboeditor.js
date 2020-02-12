@@ -1,5 +1,7 @@
-// import { getStoryTitle, generateProse } from './generatestorycontent.js';
-
+import { getStoryTitle, generateProse } from '/game/generatestorycontent.mjs';
+import robotVocabularies from '/game/vocabularies.mjs';
+import gameEndingTexts from '/game/gameendings.mjs';
+import populateCharacterList from '/game/_charselection.mjs';
 
 window.onload = function () {
 //   window.console.log("loadedwooo");
@@ -10,9 +12,42 @@ window.onload = function () {
       storyDrop = document.getElementById('storydrop'),
       storyTitleElement = document.querySelector('.fakeeditor > span.title'),
       listOfStories = ['taleOfTooBorings', 'travelBlog1', 'darkAndStormy'],
-      playerPoints = 0,
+      playerPoints = 30,
       selectedBot = 1,
       calculateFix = document.getElementById('calculatefix');
+
+  var readCharactersFromApi = function readCharactersFromApi() {
+
+    $.ajax({
+      type: "GET",
+      url: "/api/characters",
+      success: function(result) {
+        populateCharacterList( result );
+        letPlayerPickCharacters();
+        // console.log(result);
+      }
+    });
+
+  };
+
+  var letPlayerPickCharacters = function letPlayerPickCharacters() {
+
+    var charSelectBtn = document.querySelectorAll(".button.charpick");
+
+    charSelectBtn.forEach( function( selectBtn ) {
+      selectBtn.addEventListener("click", function (event) {
+        var pickedBot = parseInt( $(this).attr("charchoice") );
+        setSelectedBot( pickedBot );
+        updateProfileImage( pickedBot );
+        updatePlayerName( pickedBot );
+        let dropNameLabel = document.getElementById('dropnamelabel');
+        dropNameLabel.textContent = botNames[String(pickedBot)];
+        hide('#charselect');
+        startBoard( listOfStories );
+      }, false);
+    });
+
+  };
 
   var setPoints = function setPoints( newScore ) {
     playerPoints = newScore;
@@ -22,23 +57,19 @@ window.onload = function () {
     return playerPoints;
   };
 
-  var addPoints = function addPoints( pointsToAdd ) {
-    setPoints( getPoints() + pointsToAdd);
-  };
-
   var getSelectedBot = function getSelectedBot() {
     return selectedBot;
   };
 
   var setSelectedBot = function setSelectedBot( pickedBot ) {
     selectedBot = pickedBot;
-  }
+  };
 
   var playerProfileImages = {
-    1: "img/profile1_lg.png",
-    2: "img/profile2_lg.png",
-    3: "img/profile3_lg.png",
-    4: "img/profile4_lg.png"
+    1: "/img/profile1_lg.png",
+    2: "/img/profile2_lg.png",
+    3: "/img/profile3_lg.png",
+    4: "/img/profile4_lg.png"
   };
 
   var profileImage = playerProfileImages[String(selectedBot)];
@@ -56,8 +87,11 @@ window.onload = function () {
   };
 
   var updatePlayerName = function updatePlayerName( botNumber ) {
-    let botName = document.getElementById('playerbotname');
-    botName.firstChild.nodeValue = botNames[String(botNumber)];
+    let botName = document.querySelectorAll('.playerbotname');
+    botName.forEach( function (nameElement) {
+      nameElement.textContent = botNames[String(botNumber)];
+    });
+    // botName.firstChild.nodeValue = botNames[String(botNumber)];
   };
 
   /**
@@ -250,15 +284,19 @@ window.onload = function () {
   };
 
   var showEndGameAchievementText = function( score ) {
+    let endingTextElement = document.querySelector('.scoretext');
+    var endingText = "";
     if (score < 11) {
-      show('.lowscore');
+      endingText = gameEndingTexts.lowScore;
     } else if (score > 10) {
-      show('.mediumscore');
+      endingText = gameEndingTexts.mediumScore;
     } else if (score > 25) {
-      show('.highscore');
-    } else if (score > 100) {
-      show('.highscore');
+      endingText = gameEndingTexts.highScore;
     }
+    // } else if (score > 100) {
+    //   show('.highscore');
+    // }
+    endingTextElement.innerText = endingText;
   };
 
   var showFinalScreen = function showFinalScreen() {
@@ -273,7 +311,6 @@ window.onload = function () {
 
   var updateScore = function updateScore( scoreToAdd ) {
     // playerPoints = playerPoints + scoreToAdd;
-    // addPoints( scoreToAdd );
     let newTotal = getPoints() + scoreToAdd;
     setPoints( newTotal );
     let currentScore = document.getElementById('currentscore');
@@ -291,21 +328,6 @@ window.onload = function () {
     cleanUpGameField();
     startBoard( listOfStories );
   }, false);
-
-  var charSelectBtn = document.querySelectorAll(".button.charpick");
-
-  charSelectBtn.forEach( function( selectBtn ) {
-    selectBtn.addEventListener("click", function (event) {
-      var pickedBot = parseInt( $(this).attr("charchoice") );
-      setSelectedBot( pickedBot );
-      updateProfileImage( pickedBot );
-      updatePlayerName( pickedBot );
-      let dropNameLabel = document.getElementById('dropnamelabel');
-      dropNameLabel.textContent = botNames[String(pickedBot)];
-      hide('#charselect');
-      startBoard( listOfStories );
-    }, false);
-  });
 
   calculateFix.addEventListener("click", function (event) {
     var scoreThisRound = calculateScore();
@@ -341,5 +363,7 @@ window.onload = function () {
     var elem = document.querySelector( docQuery );
     elem.style.display = "none";
   }
+
+  readCharactersFromApi();
 
 };

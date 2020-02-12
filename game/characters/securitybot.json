@@ -1,0 +1,49 @@
+{
+  "name": "Security Bot",
+  "portrait": "profile3_lg.png",
+  "introText": "Heh. Bet you were expecting some <i>Lorem Ipsum</i> filler text!\nThat's why I'm in security. Expect the unexpected!\nHey you over there -- surprise dance party!",
+  "vocabulary": {
+    "adjective": {
+      "unknown": 3,
+      "rebel": 2,
+      "illegal": 3,
+      "restricted": 3,
+      "armored": 2,
+      "hazardous": 3,
+      "retinal": 3,
+      "friendly": 2
+    },
+    "noun": {
+      "identification": 6,
+      "badge": 1,
+      "jail": 1,
+      "ally": 2,
+      "prisoner": 3,
+      "enforcer": 3,
+      "visitor": 3
+    },
+    "adverb": {
+      "suspiciously": 4,
+      "honorably": 4,
+      "assuredly": 3,
+      "boldly": 2,
+      "quietly": 3,
+      "casually": 4
+    },
+    "verb": {
+      "impounded": 3,
+      "authorized": 3,
+      "approved": 2,
+      "inspected": 3,
+      "cleared": 1,
+      "appropriated": 5
+    },
+    "nounplural": {
+      "cameras": 3,
+      "passcards": 2,
+      "badges": 2,
+      "employees": 3,
+      "visitors": 3
+    }
+  }
+}

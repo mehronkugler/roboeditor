@@ -18,7 +18,7 @@ var robotVocabularies = {
       "radiator": 4
     },
     adverb: {
-      "mostly": 2,
+      "continuously": 5,
       "repeatedly": 4,
       "instantly": 3,
       "diligently": 4,
@@ -41,7 +41,7 @@ var robotVocabularies = {
   },
   "Security Bot": {
     adjective: {
-      "permitted": 3,
+      "unknown": 3,
       "rebel": 2,
       "illegal": 3,
       "restricted": 3,
@@ -65,12 +65,13 @@ var robotVocabularies = {
       "assuredly": 3,
       "boldly": 2,
       "quietly": 3,
+      "casually": 4
     },
     verb: {
       "impounded": 3,
       "authorized": 3,
       "approved": 2,
-      "bungled": 2,
+      "inspected": 3,
       "cleared": 1,
       "appropriated": 5
     },
@@ -128,7 +129,9 @@ var robotVocabularies = {
       "exposed": 2,
       "presidential": 4,
       "cyber": 2,
-      "unpatriotic": 5
+      "unpatriotic": 5,
+      "liberal": 3,
+      "conservative": 4
     },
     noun: {
       "papparazi": 4,
@@ -195,3 +198,5 @@ var robotVocabularies = {
     }
   },
 };
+
+export default robotVocabularies;
