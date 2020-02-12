@@ -1,0 +1,12 @@
+{
+  "title": "A Tale of Too Borings",
+  "author": "Lord Rando",
+  "text": "It was the <span class=\"dropzone adjective\" score=\"1\">best</span> of times, it was the <span class=\"dropzone adjective\" score=\"1\">worst</span>of times, it was the <noun> of <span class=\"dropzone noun\" score=\"2\">wisdom</span>, it was the age of <span class=\"dropzone noun\" score=\"3\">foolishness</span>, it was the <noun> of <span class=\"dropzone noun\" score=\"1\">belief</span>, it was the epoch of <span class=\"dropzone noun\" score=\"1\">incredulity</span>, it was the season of <span class=\"dropzone noun\" score=\"1\">Light</span>, it was the <noun> of <span class=\"dropzone noun\" score=\"1\">Darkness</span>, it was the spring of <noun>, it was the winter of <noun>, it was <span class=\"dropzone adverb\" score=\"1\">so</span> <adverb> boring.",
+  "requirements": {
+    "adjective": 0,
+    "nounplural": 0,
+    "noun": 5,
+    "adverb": 2,
+    "verb": 0
+  }
+}

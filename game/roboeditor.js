@@ -12,9 +12,10 @@ window.onload = function () {
       storyDrop = document.getElementById('storydrop'),
       storyTitleElement = document.querySelector('.fakeeditor > span.title'),
       listOfStories = ['taleOfTooBorings', 'travelBlog1', 'darkAndStormy'],
-      playerPoints = 30,
+      playerPoints = 0,
       selectedBot = 1,
-      calculateFix = document.getElementById('calculatefix');
+      calculateFix = document.getElementById('calculatefix'),
+      characterList = [];
 
   var readCharactersFromApi = function readCharactersFromApi() {
 
@@ -23,6 +24,7 @@ window.onload = function () {
       url: "/api/characters",
       success: function(result) {
         populateCharacterList( result );
+        characterList = result;
         letPlayerPickCharacters();
         // console.log(result);
       }

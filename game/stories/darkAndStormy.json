@@ -1,0 +1,12 @@
+{
+  "title": "A Dark and Stormy Night",
+  "author": "Some rando",
+  "text": "It was a <adjective> and <adjective> night. The rain <verb> <adverb>, except when it was checked by a <adjective> gust of <noun>. I feared for my very life. The <noun> was <adverb> <adjective>. It <verb> along the housetops, <adverb> agitating the <adjective> flame of the lamps that <verb> in the darkness.",
+  "requirements": {
+    "adjective": 5,
+    "nounplural": 0,
+    "noun": 2,
+    "adverb": 3,
+    "verb": 3
+  }
+}
