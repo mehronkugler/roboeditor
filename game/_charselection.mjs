@@ -37,7 +37,7 @@ var createProfileElement = function createProfileElement( characterJson, profile
   profile.classList.add("profile");
   profileImage.setAttribute('src', "/img/"+characterJson.portrait);
   profileHeader.innerText = characterJson.name;
-  profileSummary.innerText = characterJson.introText;
+  profileSummary.innerHTML = characterJson.introText;
   pickButton.classList.add("button", "charpick");
   pickButton.setAttribute("charchoice", parseInt(profileNum));
   pickButton.setAttribute("charname", characterJson.name);
