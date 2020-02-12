@@ -1,0 +1,42 @@
+{
+  "name": "Profound Bot",
+  "portrait": "profile2_lg.png",
+  "introText": "Some day I will develop a personality.\nThat day is not today.\nWasn't that deep?",
+  "vocabulary": {
+    "adjective": {
+      "holistic": 3,
+      "conscious": 2,
+      "kundalini": 4,
+      "woke": 1,
+      "communal": 3,
+      "twin": 1
+    },
+    "noun": {
+      "synergy": 3,
+      "nexus": 2,
+      "affirmation": 4,
+      "oneness": 2,
+      "unity": 3,
+      "awakening": 4,
+      "wound": 1
+    },
+    "adverb": {
+      "intentionally": 5,
+      "consciously": 3,
+      "amazingly": 4
+    },
+    "verb": {
+      "reincarnated": 5,
+      "transcended": 3,
+      "affirmed": 2,
+      "awakened": 3,
+      "evolved": 2
+    },
+    "nounplural": {
+      "chakras": 2,
+      "intentions": 3,
+      "cleansings": 2,
+      "truths": 1
+    }
+  }
+}

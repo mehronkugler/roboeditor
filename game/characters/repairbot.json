@@ -1,0 +1,45 @@
+{
+  "name": "Repair Bot",
+  "portrait": "profile1_lg.png",
+  "introText": "I was designed to clean and repair rooms in this publishing building. After some bleach spilled on my brain manifold, my inner circuitry keeps generating random words.\n And I need to share these with the world.",
+  "vocabulary": {
+    "adjective": {
+      "serviceable": 4,
+      "scratched": 1,
+      "shiny": 2,
+      "broken": 2,
+      "pristine": 2,
+      "leaky": 2,
+      "burnt": 1
+    },
+    "noun": {
+      "screwdriver": 3,
+      "voltometer": 4,
+      "hyperspanner": 4,
+      "nailgun": 2,
+      "jackhammer": 3,
+      "radiator": 4
+    },
+    "adverb": {
+      "continuously": 5,
+      "repeatedly": 4,
+      "instantly": 3,
+      "diligently": 4,
+      "obediently": 5
+    },
+    "verb": {
+      "welded": 2,
+      "incinerated": 5,
+      "drilled": 2,
+      "connected": 3,
+      "concentrated": 4,
+      "hammered": 3,
+      "insulated": 4
+    },
+    "nounplural": {
+      "tools": 1,
+      "emergencies": 4,
+      "requests": 2
+    }
+  }
+}
