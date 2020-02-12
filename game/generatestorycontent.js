@@ -188,3 +188,6 @@ var storiesData = {
     }
   }
 };
+
+
+export { generateProse, getStoryTitle };

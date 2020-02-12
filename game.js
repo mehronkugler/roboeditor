@@ -3,6 +3,8 @@ const game = express();
 const path = require('path');
 const port = 3000;
 
+express.static.mime.define({'application/javascript': ['js']});
+
 game.use('/css', express.static('css'));
 game.use('/fonts', express.static('fonts'));
 game.use('/img', express.static('img'));

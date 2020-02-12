@@ -1,5 +1,5 @@
-// import { getStoryTitle, generateProse } from './generatestorycontent.js';
-
+import { getStoryTitle, generateProse } from '/game/generatestorycontent.js';
+import robotVocabularies from '/game/vocabularies.js';
 
 window.onload = function () {
 //   window.console.log("loadedwooo");
