@@ -1,4 +1,5 @@
 import { generateProseFromJson } from '/game/generatestorycontent.mjs';
+import { addDraggableWords } from '/game/_genDraggableWords.mjs';
 import robotVocabularies from '/game/vocabularies.mjs';
 import gameEndingTexts from '/game/gameendings.mjs';
 import populateCharacterList from '/game/_charselection.mjs';
@@ -61,15 +62,10 @@ window.onload = function () {
         var selectedBotIndex = parseInt( $(this).attr("charchoice") );
         var botProfile = characterList[ selectedBotIndex ];
 
-        // var pickedBot = parseInt( $(this).attr("charchoice") );
-
         selectedBotProfile = botProfile;
-        // profileImage = botProfile.profile;
-        // updateProfileImage( botProfile );
         
         let profileImage = document.getElementById('playerprofileimage');
         profileImage.setAttribute("src", "/img/"+botProfile.portrait);
-
 
         updatePlayerName( botProfile );
         let dropNameLabel = document.getElementById('dropnamelabel');
@@ -88,22 +84,6 @@ window.onload = function () {
 
   var getPoints = function getPoints() {
     return playerPoints;
-  };
-
-  // var playerProfileImages = {
-  //   1: "/img/profile1_lg.png",
-  //   2: "/img/profile2_lg.png",
-  //   3: "/img/profile3_lg.png",
-  //   4: "/img/profile4_lg.png"
-  // };
-
-  // var profileImage = playerProfileImages[String(selectedBot)];
-
-  var botNames = {
-    1: "Repair Bot",
-    2: "Profound Bot",
-    3: "Security Bot",
-    4: "Lampshade"
   };
 
   var updatePlayerName = function updatePlayerName( botProfile ) {
@@ -163,73 +143,6 @@ window.onload = function () {
     var oldScore = dropzone.attr("score");
     dragged.attr("oldscore", oldScore);
   };
-
-  // var choosePlayerWordSource = function choosePlayerWordSource( selectedBot ) {
-  //   return robotVocabularies[ botNames[ String(selectedBot)] ];
-  // };
-
-  var addDraggableWords = function addDraggableWords( 
-    dropzoneElement, sourceDictionary = wordReference ) {
-    
-    var adjectives = createManyWords( 
-      "adjective", Math.floor(Math.random()*5) +1, sourceDictionary);
-    var nouns = createManyWords( 
-      "noun", Math.floor(Math.random()*5) +1, sourceDictionary );
-    var adverbs = createManyWords( 
-      "adverb", Math.floor(Math.random()*5) + 1, sourceDictionary);
-    var verbs = createManyWords( 
-      "verb", Math.floor(Math.random()*5)+1, sourceDictionary);
-    var nounplural = createManyWords( 
-      "nounplural", Math.floor(Math.random()*2)+1, sourceDictionary);
-
-    adjectives.forEach( function (draggableWord) {
-      dropzoneElement.appendChild(draggableWord);
-    });
-    nouns.forEach( function (draggableWord) {
-      dropzoneElement.appendChild(draggableWord);
-    });
-    adverbs.forEach( function (draggableWord) {
-      dropzoneElement.appendChild(draggableWord);
-    });
-    verbs.forEach( function (draggableWord) {
-      dropzoneElement.appendChild(draggableWord);
-    });
-    nounplural.forEach( function (draggableWord) {
-      dropzoneElement.appendChild(draggableWord);
-    });
-  };
-
-  /**
-    return list of DIV-ed up words
-  */
-  var createManyWords = function createManyWords( 
-    wordType, numWords, sourceDictionary
-    ) {
-    var wordList = [];
-    for (var i = 0; i < numWords; i++) {
-      wordList.push( createDraggableWord( wordType, sourceDictionary ) );
-    }
-    return wordList;
-  };
-
-  var createDraggableWord = function createDraggableWord( 
-    wordType, sourceDictionary ) {
-    // word types: noun, adjective
-    let wordList = Object.keys(sourceDictionary[wordType]);
-    var randomWordText = wordList[
-      Math.floor(Math.random()*wordList.length)
-    ];
-    var wordScore = sourceDictionary[wordType][randomWordText];
-    var draggableWord = document.createElement('DIV');
-    draggableWord.classList.add("draggable", wordType);
-    draggableWord.setAttribute("score", wordScore);
-    draggableWord.textContent = randomWordText;
-    return draggableWord;
-  };
-
-  // <div class="draggable adjective">scintillating</div>
-  //         <div class="draggable adjective">refreshing</div>
-  //         <div class="draggable nounplural">butterflies</div>
 
   var calculateScore = function calculateScore() {
     var usedWords = document.querySelectorAll('.draggable.dropped');
@@ -319,8 +232,8 @@ window.onload = function () {
   };
 
   var showFinalScreen = function showFinalScreen() {
-    var ratingWord = getFinalRatingWord( playerPoints );
-    showEndGameAchievementText( playerPoints );
+    var ratingWord = getFinalRatingWord( getPoints() );
+    showEndGameAchievementText( getPoints() );
 
     let admiredWord = document.getElementById('admiredword');
     admiredWord.firstChild.nodeValue = ratingWord;
@@ -329,7 +242,6 @@ window.onload = function () {
   };
 
   var updateScore = function updateScore( scoreToAdd ) {
-    // playerPoints = playerPoints + scoreToAdd;
     let newTotal = getPoints() + scoreToAdd;
     setPoints( newTotal );
     let currentScore = document.getElementById('currentscore');
@@ -361,7 +273,6 @@ window.onload = function () {
   }, false);
 
   var startBoard = function startBoard() {
-    // var sourceDictionary = choosePlayerWordSource( selectedBot );
     var sourceDictionary = selectedBotProfile.vocabulary;
     var currentStoryJson = listOfStories.pop();
     if (currentStoryJson) {
@@ -371,8 +282,6 @@ window.onload = function () {
       showFinalScreen();
     }
   };
-
-  // startBoard( listOfStories );
 
   function show( docQuery ) {
     var elem = document.querySelector( docQuery );
