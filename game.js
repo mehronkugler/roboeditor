@@ -4,6 +4,7 @@ const path = require('path');
 const port = 3000;
 
 const readPlayerCharacters = require('./game/_readplayercharacters.cjs');
+const readStoriesFiles = require('./game/_readstories.cjs');
 
 express.static.mime.define({'application/javascript': ['js']});
 
@@ -23,5 +24,11 @@ game.get('/api/characters', function(req, res) {
   var playerCharacters = readPlayerCharacters();
   res.json(playerCharacters);
 });
+
+game.get('/api/stories', function(req, res) {
+  var stories = readStoriesFiles();
+  res.json(stories);
+});
+
 
 game.listen(port, () => console.log(`Robo Editor game listening on port ${port}!`));
