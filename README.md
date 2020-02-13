@@ -9,9 +9,15 @@ This game is under active development.
 Running this game requires Node JS.
 
 1. Clone the repo
-2. run 'node game.js'
-3. Go to 'localhost:3000' to play
+2. `npm install`
+3. run 'node game.js'
+4. Go to 'localhost:3000' to play
 
 ## Known bugs
 
-There is a bug where it's possible to drag words from the memory bank onto other words in the memory bank, and the dragged word disappears. :(
+None so far -- yay!
+
+## Fixed bugs
+
+- could drop source words on to each other and lose the word
+

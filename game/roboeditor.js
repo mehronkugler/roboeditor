@@ -68,8 +68,8 @@ window.onload = function () {
         profileImage.setAttribute("src", "/img/"+botProfile.portrait);
 
         updatePlayerName( botProfile );
-        let dropNameLabel = document.getElementById('dropnamelabel');
-        dropNameLabel.textContent = botProfile.name;
+        // let dropNameLabel = document.getElementById('dropnamelabel');
+        // dropNameLabel.textContent = botProfile.name;
 
         hide('#charselect');
         startBoard( getListOfStories() );
@@ -108,11 +108,9 @@ window.onload = function () {
 
     $( ".draggable" ).draggable({revert: "invalid"});
 
-    $('#wordpick').droppable();
-
     ["noun", "verb", "adjective", "adverb", "nounplural"].forEach( function (wordType) {
       $( ".dropzone."+wordType ).droppable({
-        accept: "."+wordType,
+        accept: ".draggable."+wordType,
         classes: {
           "ui-droppable-active": "ui-state-highlight"
         },
@@ -129,6 +127,9 @@ window.onload = function () {
       ui.draggable.draggable("disable");
       fillInDropWithTarget( ui.draggable, $(dropObject) );
       window.console.log("Dropped a word");
+
+      //TODO : add better word type checking. for instance, reject dropping on
+      //to other draggables
   };
 
   var fillInDropWithTarget = function fillInDropWithTarget( dragged, dropzone ){
