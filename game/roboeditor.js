@@ -1,4 +1,4 @@
-import { getStoryTitle, generateProse } from '/game/generatestorycontent.mjs';
+import { generateProseFromJson } from '/game/generatestorycontent.mjs';
 import robotVocabularies from '/game/vocabularies.mjs';
 import gameEndingTexts from '/game/gameendings.mjs';
 import populateCharacterList from '/game/_charselection.mjs';
@@ -16,6 +16,7 @@ window.onload = function () {
       selectedBot = 1,
       calculateFix = document.getElementById('calculatefix'),
       characterList = [];
+      // storiesList = [];
 
   var readCharactersFromApi = function readCharactersFromApi() {
 
@@ -26,6 +27,22 @@ window.onload = function () {
         populateCharacterList( result );
         characterList = result;
         letPlayerPickCharacters();
+        // console.log(result);
+      }
+    });
+
+  };
+
+  var readStoriesFromApi = function readStoriesFromApi() {
+
+    $.ajax({
+      type: "GET",
+      url: "/api/stories",
+      success: function(result) {
+        listOfStories = result;
+        // populateCharacterList( result );
+        // characterList = result;
+        // letPlayerPickCharacters();
         // console.log(result);
       }
     });
@@ -101,13 +118,13 @@ window.onload = function () {
    * @param  {[type]}
    * @return {[type]}
    */
-  var generateStoryPageElements = function( currentStoryRef ) {
+  var generateStoryPageElements = function( currentStoryJson ) {
 
-    var currentStory = generateProse( currentStoryRef );
+    var currentStory = generateProseFromJson( currentStoryJson );
     var scoreCard = document.querySelector('.scorecard');
 
-    storyDrop.innerHTML = currentStory.innerHTML,
-    storyTitleElement.innerText = getStoryTitle( currentStoryRef );
+    storyDrop.innerHTML = currentStory.innerHTML;
+    storyTitleElement.innerText = currentStoryJson.title;
 
     $( ".draggable" ).draggable({revert: "invalid"});
 
@@ -345,10 +362,10 @@ window.onload = function () {
 
   var startBoard = function startBoard( activeStoriesList ) {
     var sourceDictionary = choosePlayerWordSource( selectedBot );
-    var currentStoryRef = activeStoriesList.pop();
-    if (currentStoryRef) {
+    var currentStoryJson = activeStoriesList.pop();
+    if (currentStoryJson) {
       addDraggableWords( worddrop, sourceDictionary );
-      generateStoryPageElements( currentStoryRef );
+      generateStoryPageElements( currentStoryJson );
     } else {
       showFinalScreen();
     }
@@ -367,5 +384,6 @@ window.onload = function () {
   }
 
   readCharactersFromApi();
+  readStoriesFromApi();
 
 };

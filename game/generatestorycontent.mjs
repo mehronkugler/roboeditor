@@ -8,16 +8,9 @@
 // <span class="dropzone adjective" score="2">noisy</span>.
 // </p>
 
-var getStoryTitle = function getStoryTitle( proseName ) {
-  return storiesData[proseName].title;
-};
-
-/**
- * @return HTMLElement that can be inserted in the game area
- */
-var generateProse = function generateProse( proseName ) {
-  var text = storiesData[proseName].text;
-  var listOfRequirements = Object.keys(storiesData[proseName].requirements);
+var generateProseFromJson = function generateProseFromJson( storyJson ) {
+  var text = storyJson.text;
+  var listOfRequirements = Object.keys(storyJson.requirements);
   var wordsForMeetingReqs = {
     adjective: [],
     noun: [],
@@ -26,7 +19,7 @@ var generateProse = function generateProse( proseName ) {
   };
 
   listOfRequirements.forEach( function (requirementName) {
-    var countWordTypeNeeded = storiesData[proseName].requirements[requirementName];
+    var countWordTypeNeeded = storyJson.requirements[requirementName];
       wordsForMeetingReqs[requirementName] = 
         createManyStoryWords(requirementName, countWordTypeNeeded);
   });
@@ -122,72 +115,4 @@ var storyWordReference = {
   }
 };
 
-var storiesData = {
-  darkAndStormy: {
-    title: "A Dark and Stormy Night",
-    author: "Some rando",
-    text: "It was a <adjective> and <adjective> night. The rain <verb> "+
-    "<adverb>, except when it was checked by a <adjective> gust of <noun>. I feared for my very life. The <noun> was " +
-    "<adverb> <adjective>. It <verb> along the housetops, <adverb> " +
-    "agitating the <adjective> flame of the lamps that <verb> in the darkness.",
-    requirements: {
-      adjective: 5,
-      nounplural: 0,
-      noun: 2,
-      adverb: 3,
-      verb: 3
-    }
-  },
-  taleOfTooBorings: {
-    title: "A Tale of Too Borings",
-    author: "Lord Rando",
-    text: ""+
-    "It was the <span class=\"dropzone adjective\" score=\"1\">best</span> "+
-    "of times, it was the <span class=\"dropzone adjective\" score=\"1\">worst</span>"+
-    "of times, it was the <noun> of <span class=\"dropzone noun\" score=\"2\">wisdom</span>, "+
-    "it was the age of <span class=\"dropzone noun\" score=\"3\">foolishness</span>, "+
-    "it was the <noun> of <span class=\"dropzone noun\" score=\"1\">belief</span>, "+
-    "it was the epoch of <span class=\"dropzone noun\" score=\"1\">incredulity</span>, "+
-    "it was the season of <span class=\"dropzone noun\" score=\"1\">Light</span>, "+
-    "it was the <noun> of <span class=\"dropzone noun\" score=\"1\">Darkness</span>, "+
-    "it was the spring of <noun>, it was the winter of <noun>, it was "+
-    "<span class=\"dropzone adverb\" score=\"1\">so</span> <adverb> boring.",
-    requirements: {
-      adjective: 0,
-      nounplural: 0,
-      noun: 5,
-      adverb: 2,
-      verb: 0
-    }
-  },
-  travelBlog1: {
-    title: "Travel Blog Entry: SomewhereIsStan",
-    author: "Chad The Rad Travelin' Dad",
-    text: "" +
-"Picture this: <span class=\"dropzone adjective\" score=\"3\">amazing</span> mountains for miles, "+
-"<span class=\"dropzone adjective\" score=\"2\">fragrant</span> <span class=\"dropzone nounplural\" score=\"3\">wildflowers</span> on the air, "+
-"a <span class=\"dropzone adjective\" score=\"1\">warm</span> breeze, and <adjective> cottages ranging as far as the eye can see."+
-"<br><br>"+
-"I <span class=\"dropzone adverb\" score=\"3\">hesitantly</span>decided to go to SomewhereIsStan after a <adjective> friend "+
-"came up and <span class=\"dropzone verb\" score=\"3\">slapped</span> me in the face. "+
-"At first I was <adverb> hesitant, but I decided I <adverb> needed to search my "+
-"<span class=\"dropzone nounplural\" score=\"2\">feelings</span> and "+
-"check my <span class=\"dropzone nounplural\" score=\"1\">doubts</span>."+
-"<br><br>"+
-"After checking in with the <span class=\"dropzone nounplural\" score=\"3\">universe</span> "+
-"I <span class=\"dropzone verb\" score=\"2\">glamped</span> through the "+
-"<span class=\"dropzone adjective\" score=\"2\">slushy</span> "+
-"highlands of SomewhereIsStan, free as a <span class=\"dropzone noun\" score=\"1\">wage</span> "+
-"<span class=\"dropzone noun\" score=\"1\">slave</span>.",
-    requirements: {
-      adjective: 6,
-      nounplural: 3,
-      noun: 0,
-      adverb: 2,
-      verb: 1
-    }
-  }
-};
-
-
-export { generateProse, getStoryTitle };
+export { generateProseFromJson };
