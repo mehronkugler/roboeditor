@@ -11,12 +11,11 @@ window.onload = function () {
       worddrop   = document.getElementById("worddrop"),
       storyDrop = document.getElementById('storydrop'),
       storyTitleElement = document.querySelector('.fakeeditor > span.title'),
-      listOfStories = ['taleOfTooBorings', 'travelBlog1', 'darkAndStormy'],
+      listOfStories = [],
       playerPoints = 0,
-      selectedBot = 1,
+      selectedBotProfile = {},
       calculateFix = document.getElementById('calculatefix'),
       characterList = [];
-      // storiesList = [];
 
   var readCharactersFromApi = function readCharactersFromApi() {
 
@@ -27,7 +26,6 @@ window.onload = function () {
         populateCharacterList( result );
         characterList = result;
         letPlayerPickCharacters();
-        // console.log(result);
       }
     });
 
@@ -39,14 +37,18 @@ window.onload = function () {
       type: "GET",
       url: "/api/stories",
       success: function(result) {
-        listOfStories = result;
-        // populateCharacterList( result );
-        // characterList = result;
-        // letPlayerPickCharacters();
-        // console.log(result);
+        setListOfStories(result);
       }
     });
 
+  };
+
+  var getListOfStories = function getListOfStories() {
+    return listOfStories;
+  };
+
+  var setListOfStories = function setListOfStories( storyList ) {
+    listOfStories = storyList;
   };
 
   var letPlayerPickCharacters = function letPlayerPickCharacters() {
@@ -55,14 +57,26 @@ window.onload = function () {
 
     charSelectBtn.forEach( function( selectBtn ) {
       selectBtn.addEventListener("click", function (event) {
-        var pickedBot = parseInt( $(this).attr("charchoice") );
-        setSelectedBot( pickedBot );
-        updateProfileImage( pickedBot );
-        updatePlayerName( pickedBot );
+
+        var selectedBotIndex = parseInt( $(this).attr("charchoice") );
+        var botProfile = characterList[ selectedBotIndex ];
+
+        // var pickedBot = parseInt( $(this).attr("charchoice") );
+
+        selectedBotProfile = botProfile;
+        // profileImage = botProfile.profile;
+        // updateProfileImage( botProfile );
+        
+        let profileImage = document.getElementById('playerprofileimage');
+        profileImage.setAttribute("src", "/img/"+botProfile.portrait);
+
+
+        updatePlayerName( botProfile );
         let dropNameLabel = document.getElementById('dropnamelabel');
-        dropNameLabel.textContent = botNames[String(pickedBot)];
+        dropNameLabel.textContent = botProfile.name;
+
         hide('#charselect');
-        startBoard( listOfStories );
+        startBoard( getListOfStories() );
       }, false);
     });
 
@@ -76,22 +90,14 @@ window.onload = function () {
     return playerPoints;
   };
 
-  var getSelectedBot = function getSelectedBot() {
-    return selectedBot;
-  };
+  // var playerProfileImages = {
+  //   1: "/img/profile1_lg.png",
+  //   2: "/img/profile2_lg.png",
+  //   3: "/img/profile3_lg.png",
+  //   4: "/img/profile4_lg.png"
+  // };
 
-  var setSelectedBot = function setSelectedBot( pickedBot ) {
-    selectedBot = pickedBot;
-  };
-
-  var playerProfileImages = {
-    1: "/img/profile1_lg.png",
-    2: "/img/profile2_lg.png",
-    3: "/img/profile3_lg.png",
-    4: "/img/profile4_lg.png"
-  };
-
-  var profileImage = playerProfileImages[String(selectedBot)];
+  // var profileImage = playerProfileImages[String(selectedBot)];
 
   var botNames = {
     1: "Repair Bot",
@@ -100,17 +106,11 @@ window.onload = function () {
     4: "Lampshade"
   };
 
-  var updateProfileImage = function updateProfileImage( botNumber ) {
-    let profileImage = document.getElementById('playerprofileimage');
-    profileImage.setAttribute("src", playerProfileImages[String(botNumber)]);
-  };
-
-  var updatePlayerName = function updatePlayerName( botNumber ) {
+  var updatePlayerName = function updatePlayerName( botProfile ) {
     let botName = document.querySelectorAll('.playerbotname');
     botName.forEach( function (nameElement) {
-      nameElement.textContent = botNames[String(botNumber)];
+      nameElement.textContent = botProfile.name;
     });
-    // botName.firstChild.nodeValue = botNames[String(botNumber)];
   };
 
   /**
@@ -164,9 +164,9 @@ window.onload = function () {
     dragged.attr("oldscore", oldScore);
   };
 
-  var choosePlayerWordSource = function choosePlayerWordSource( selectedBot ) {
-    return robotVocabularies[ botNames[ String(selectedBot)] ];
-  };
+  // var choosePlayerWordSource = function choosePlayerWordSource( selectedBot ) {
+  //   return robotVocabularies[ botNames[ String(selectedBot)] ];
+  // };
 
   var addDraggableWords = function addDraggableWords( 
     dropzoneElement, sourceDictionary = wordReference ) {
@@ -345,7 +345,7 @@ window.onload = function () {
   nextStory.addEventListener("click", function() {
     hide('.scorecard');
     cleanUpGameField();
-    startBoard( listOfStories );
+    startBoard( getListOfStories() );
   }, false);
 
   calculateFix.addEventListener("click", function (event) {
@@ -360,9 +360,10 @@ window.onload = function () {
     updateScore( scoreThisRound );
   }, false);
 
-  var startBoard = function startBoard( activeStoriesList ) {
-    var sourceDictionary = choosePlayerWordSource( selectedBot );
-    var currentStoryJson = activeStoriesList.pop();
+  var startBoard = function startBoard() {
+    // var sourceDictionary = choosePlayerWordSource( selectedBot );
+    var sourceDictionary = selectedBotProfile.vocabulary;
+    var currentStoryJson = listOfStories.pop();
     if (currentStoryJson) {
       addDraggableWords( worddrop, sourceDictionary );
       generateStoryPageElements( currentStoryJson );
